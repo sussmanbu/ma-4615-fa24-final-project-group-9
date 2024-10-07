@@ -26,9 +26,9 @@ The members of this team are below.
 
 Rachel Li is a Data Science student in her fifth year. 
 
-## Dan Sussman
+## Hanjie Liang
 
-Dan is a professor in the Math/Stat department and is the instructor for the course.
+Hanjie Liang is an idiot.
 
 <!-- Please leave in the information below -->
 

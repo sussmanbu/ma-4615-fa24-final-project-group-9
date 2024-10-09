@@ -30,6 +30,10 @@ Rachel Li is a Data Science student in her fifth year.
 
 Hanjie Liang is an idiot.
 
+## Matthew Cox
+
+Matthew Cox is a Psychology major in his 4th year.
+
 <!-- Please leave in the information below -->
 
 ### About this Template.

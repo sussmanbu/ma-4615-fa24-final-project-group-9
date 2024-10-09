@@ -1,0 +1,47 @@
+---
+title: "Group 9 Blog post 1"
+editor: visual
+toc: true
+draft: false
+---
+
+NYPD Arrest Data (Year to Date)
+https://catalog.data.gov/dataset/nypd-arrest-data-year-to-date
+This data set includes 19 columns and 128778 rows. This data was gathered to record an arrest conducted by the NYPD and includes information such as the location, time, and type of crime. The data set also includes information about the suspect demographics. This data is manually picked by the Office of Management Analysis and Planning in the NYPD and is extracted from a larger pool of arrests recorded. The NYPD extracts this data quarterly. We can load and clean the data set. 
+The questions we hope to address when using this data set are:
+1. What time of year are most crimes reported?
+2. What race, age group, and sex most frequently shows up as the perpetrator
+3. Which precinct collects the most arrests?
+4. Are there certain crimes that each gender does more frequently?
+Some of the potential challenges for this data set are that the variable names aren’t always very clear and there are many values in the data set which can make managing some of the results we find difficult and complex. 
+
+
+
+National Statistics by Parent Income Percentile, Gender, and Race
+(https://www.census.gov/programs-surveys/ces/data/public-use-data/race-and-economic-opportunity-data-tables.html)
+Description:
+Num_of_columns: 69
+Num_of_rows: 101
+Why: The data was collected to study intergenerational mobility by examining how parent income impacts various child outcomes across different races and genders. 
+How: The data was gathered from large-scale administrative and census data sources. It is based on children born between 1978-1983 and tracks their outcomes, such as education, employment, and income. 
+Loading and Cleaning: Yes, the dataset has very little missing values.  
+Main Questions:
+Intergenerational Mobility: How does a parent's income percentile affect their child’s income rank, educational attainment, and other life outcomes?
+Racial and Gender Disparities: How do outcomes such as education, employment, incarceration, and income vary by race and gender across different parent income percentiles?
+Impact of Family Structure: How does family structure (e.g., single-parent vs. two-parent households) impact child outcomes across different races and income levels?
+College Attendance and Employment: What is the relationship between parent income and a child’s likelihood of attending college or securing employment by race and gender?
+Complexity of Analysis: The intersection of parent income percentile, race, gender, and various child outcomes creates a highly multidimensional dataset, which could make it challenging to interpret findings without clear methods for managing these complexities.
+
+
+
+Jobs NYC Postings
+https://catalog.data.gov/dataset/nyc-jobs
+This dataset includes 5347 rows and 30 columns, it contains current job postings available on the City of New York’s official jobs site (http://www.nyc.gov/html/careers/html/search/search.shtml). It includes the posting type(internal/external), job category, salary range (from/to), posting date, residency requirement…We are able to load and clean the dataset, and I hope to address what is the requirement or description of the job which has the highest salary range. There are some potential challenges because some data are kind of messy and described in different words, like the job description/the minimum qual requirements/preferred skill, they might lead to more complex results.
+
+
+Popular baby names
+https://catalog.data.gov/dataset/popular-baby-names
+There are 6 columns and 69214 rows in this data. The six columns describes the actual name, the year it was collected, the ethnicity this name belongs to, the gender that the name is used, the count of the use of that name in that year with a minimum of 10, and how it is ranked that year in that specific gender and ethnicity.By description, this data is collected by Sex and Ethnicity Group Data through civil birth registration. I had no problem loading and performing some cleaning to the data. I believe that followings could be studied from that data:
+The preference difference in people choosing the name for the child based on their culture. By putting the names into a histogram group by ethnicity, we might see how each ethnicity has a sharper distribution and review some differences based on that.
+How the popularity of each individual name has changed. Instead of looking at the data based on ethnicity, looking at the data’s trends based on the years would also provide useful information on how people are changing their preferences.
+---

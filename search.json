@@ -81,7 +81,21 @@
     "href": "about.html#matthew-cox",
     "title": "About",
     "section": "Matthew Cox",
-    "text": "Matthew Cox\nMatthew Cox is a Psychology major in his 4th year.\n\n\nAbout this Template.\nThis is based off of the standard Quarto website template from RStudio (2023.09.0 Build 463)."
+    "text": "Matthew Cox\nMatthew Cox is a Psychology major in his 4th year."
+  },
+  {
+    "objectID": "about.html#huiyang-shi",
+    "href": "about.html#huiyang-shi",
+    "title": "About",
+    "section": "Huiyang Shi",
+    "text": "Huiyang Shi\nHuiyang Shi is a junior majoring in Statistics."
+  },
+  {
+    "objectID": "about.html#ruohan-li",
+    "href": "about.html#ruohan-li",
+    "title": "About",
+    "section": "Ruohan Li",
+    "text": "Ruohan Li\nRuohan Li is a Statistics major student.\n\n\nAbout this Template.\nThis is based off of the standard Quarto website template from RStudio (2023.09.0 Build 463)."
   },
   {
     "objectID": "analysis.html",

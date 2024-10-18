@@ -1,17 +1,33 @@
 ---
 title: "2nd blog post group 9"
-author: ""
+author: "Group 9"
 date: "2024-10-18"
 date-modified: "2024-10-18"
 draft: FALSE
 ---
 
+This week, our group worked on checking the data background, finding the issue of the data and generally cleaning it. Next week, we will discuss how to clean the 
+data specifically and the data equity. 
 
-## Where does the data come from? Who collected it? Why was it collected? Are you able to find the data from the original source?
-This data comes from the United States Census Bureau and the National Center for Science and Engineering Statistics (NCSES). The Nation Center for Science and Engineering Statistics collected the data provided. This data was collected to provide information on the sex, ethnicity, race, industry, and veteran status of employees in metro areas. More specifically, the data helps provide researchers, practitioners, policymakers, and the public with more information. We are partly able to find the data from the original source. NCSES works with the United States Census Bureau as part of the federal government and we are able to find the data from there. 
+Data Background: 
 
+**This data comes from the United States Census Bureau and the National Center for Science and Engineering Statistics (NCSES). The Nation Center for Science and 
+Engineering Statistics collected the data provided. This data was collected to provide information on the sex, ethnicity, race, industry, and veteran status of 
+employees in metro areas. More specifically, the data helps provide researchers, practitioners, policymakers, and the public with more information. We are partly 
+able to find the data from the original source. NCSES works with the United States Census Bureau as part of the federal government and we are able to find the 
+data from there. **
 
-## Are there any issues you can see with how the data was collected? What is the sample population? Are there reasons to think the sample is biased in some way?
+**After an overall review, this data is collected comprehensively and doesn't contain big issue. We can see if the sample is biased through if it only includes 
+certain groups. However, the population is representative of the broader community. For example, the data set includes loan applicants from broad regions, income 
+brackets, racial groups, sex and veteran. It is relatively fair data.**
 
+**The data is often used to understand the characteristics of businesses in the U.S., such as their ownership (by sex, race, veteran status, etc.) and how long 
+they’ve been in operation. Researchers might use this data to explore trends in business growth, diversity in ownership, or the challenges certain groups face in 
+starting and sustaining businesses. Other research has used this data to study issues like disparities in business ownership across different demographic groups, 
+and it can also be used for policy decisions. For example, government programs supporting minority-owned businesses or veteran entrepreneurs might rely on this 
+data to tailor policies. **
 
-## How is this data used? Has there been other research on the same data? Is this data being used for some policy decisions? What questions have others ask about this data?
+Questions include: 
+What factors contribute to business success? 
+Are certain groups underrepresented in business ownership? 
+What resources do different types of businesses need to grow?

@@ -68,19 +68,35 @@ To link to this file, you can use `[cleaning script](/scripts/load_and_clean_dat
 
 ## Rubric: On this page
 
-You will
+**link: https://data.census.gov/table/ABSCB2021.AB2100CSCB02?t=Age%20of%20Business
 
-* Describe where/how to find data.
-  * You must include a link to the original data source(s). Make sure to provide attribution to those who collected the data.
-  * Why was the data collected/curated? Who put it together? (This is important, if you don't know why it was collected then that might not be a good dataset to look at.
-* Describe the different data files used and what each variable means. 
-  * If you have many variables then only describe the most relevant ones and summarize the rest.
-* Describe any cleaning you had to do for your data.
-  * You *must* include a link to your `load_and_clean_data.R` file.
-  * Rrename variables and recode factors to make data more clear.
-  * Also, describe any additional R packages you used outside of those covered in class.
-  * Describe and show code for how you combined multiple data files and any cleaning that was necessary for that.
-  * Some repetition of what you do in your `load_and_clean_data.R` file is fine and encouraged if it helps explain what you did.
-* Organization, clarity, cleanliness of the page
-  * Make sure to remove excessive warnings, use clean easy-to-read code (without side scrolling), organize with sections, use bullets and other organization tools, etc.
-  * This page should be self-contained.
+**The data was collected by the National Center for Science and Engineering Statistics (NCSES) in collaboration with the United States Census Bureau. The primary purpose of collecting this data was to provide comprehensive information about the characteristics of employees in metropolitan areas across various demographic dimensions, including sex, ethnicity, race, years in business, and veteran status. The intention behind this collection is to support research, inform policymakers, and offer valuable insights to the public.
+
+**variables:
+
+GEO_ID: Geographic identifier code
+NAME: Geographic Area Name
+NAICS2017: 2017 NAICS code
+NAICS2017_LABEL: Meaning of NAICS Code
+SEX: Sex code
+SEX_LABEL: Meaning of Sex code
+ETH_GROUP: Ethnicity code
+ETH_GROUP_LABEL: Meaning of Ethnicity code
+RACE_GROUP: Race code
+RACE_GROUP_LABEL: Meaning of Race code
+VET_GROUP: Veteran code
+VET_GROUP_LABEL: Meaning of Veteran code
+YIBSZFI: Years in business code
+YIBSZFI_LABEL: Meaning of Years in business code
+YEAR: year
+FIRMPDEMP: Number of employer firms
+RCPPDEMP: Sales, value of shipments, or revenue of employer firms ($1,000)
+EMP: Number of employees
+PAYANN: Annual payroll ($1,000)
+FIRMPDEMP_S: Relative standard error of employer firms (%)
+RCPPDEMP_S: Relative standard error of sales, value of shipments, or revenue of employer firms (%)
+EMP_S: Relative standard error of number of employees (%)
+PAYANN_S: Relative standard error of annual payroll (%)
+
+**`load_and_clean_data.R` file
+https://github.com/sussmanbu/ma-4615-fa24-final-project-group-9/blame/main/dataset/loan_refusal_clean.rds

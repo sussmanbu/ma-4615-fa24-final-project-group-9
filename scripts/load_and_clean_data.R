@@ -4,7 +4,7 @@
 
 library(tidyverse)
 
-# This part loads the datas.
+# This part loads the data.
 
 X2017 <- read_csv(here::here("dataset", "2017.csv"))
 X2018 <- read_csv(here::here("dataset", "2018.csv"))

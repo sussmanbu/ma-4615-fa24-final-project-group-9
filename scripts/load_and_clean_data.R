@@ -104,7 +104,7 @@ filter(all_data, is.na(PAYANN))
 # will still be useful when conducting other studies, just not useful when we are trying to
 # know the relation between revenue and others, so two tables are made here.
 # One remove the revenue column and leave those rows with na revenue,
-# the other keep the revenue volumn and remove the rows with na revenue.
+# the other keep the revenue column and remove the rows with na revenue.
 
 data_W_revenue <- filter(all_data, !is.na(FIRMPDEMP)) |>
   select(-c(RCPPDEMP, RCPPDEMP_S))

@@ -5,3 +5,18 @@ date: "2024-10-25"
 date-modified: "2024-10-25"
 draft: FALSE
 ---
+Date Cleaning: 
+
+
+
+Data Equity:
+
+The first principle, justice, means treating everyone in our data fairly. If we're analyzing factors like race, gender, or income, we need to make sure our data 
+collection and analysis don’t favor one group over another. This ensures that all groups are represented equally, and the findings don’t carry any unfair bias. The 
+second principle, respect for persons, focuses on people’s right to make their own choices. This means giving people the information they need to understand the 
+data and allowing them the freedom to act on it. If someone has limits, like age, a disability, or difficulty with language, they deserve extra support to 
+understand and participate fully in the process.
+
+Transparency is key, but our analysis might have limitations. While the data from the U.S. Census Bureau and NCSES is comprehensive and diverse, it only covers 2017-
+2021, potentially missing recent trends. Though the dataset aims to be representative, some subgroups may still be underrepresented. Acknowledging these limitations 
+ensures responsible use and accurate insights into business growth, diversity, and resource needs.

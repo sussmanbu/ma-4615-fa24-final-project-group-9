@@ -7,6 +7,8 @@ draft: FALSE
 ---
 Date Cleaning: 
 
+For our initial data cleaning, we started by selecting a subset of the data that contains key demographic and business characteristics, focusing on columns with minimal missing values to ensure a more reliable analysis. We first removed rows with significant missing data to avoid skewing our results but kept those with minor gaps for further inspection. As part of exploratory data analysis (EDA), we checked for unusual patterns, such as outliers, unexpectedly frequent or infrequent values, and relationships that align with or deviate from known trends. Below is an initial visualization showing the distribution of businesses by owner race and industry, helping us spot potential data inconsistencies or biases.
+
 
 
 Data Equity:

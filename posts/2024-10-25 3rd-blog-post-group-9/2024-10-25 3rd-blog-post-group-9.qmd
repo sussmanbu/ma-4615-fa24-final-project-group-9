@@ -14,7 +14,35 @@ checked for unusual patterns, such as outliers, unexpectedly frequent or infrequ
 from known trends. Below is an initial visualization showing the distribution of businesses by owner race and industry, helping us spot 
 potential data inconsistencies or biases.
 
+```{r}
+library(tidyverse)
+data <- readRDS(here::here("dataset/cleaned_data_N_revenue.rds"))
+data |>
+  filter(RACE_GROUP_LABEL != "Total",
+         NAICS2017_LABEL == "Total for all sectors",
+         SEX_LABEL == "Total",
+         ETH_GROUP_LABEL == "Total",
+         VET_GROUP_LABEL == "Total",
+         YEAR == 2017) |>
+  ggplot() +
+  geom_col(aes(x = RACE_GROUP_LABEL, y = FIRMPDEMP, fill = RACE_GROUP_LABEL), show.legend = FALSE) +
+  coord_flip() +
+  xlab("Major race for company") +
+  ylab("Total amount of firms")
 
+data |>
+  filter(RACE_GROUP_LABEL == "Total",
+         NAICS2017_LABEL != "Total for all sectors",
+         SEX_LABEL == "Total",
+         ETH_GROUP_LABEL == "Total",
+         VET_GROUP_LABEL == "Total",
+         YEAR == 2017) |>
+  ggplot() +
+  geom_col(aes(x = NAICS2017_LABEL, y = FIRMPDEMP, fill = NAICS2017_LABEL), show.legend = FALSE) +
+  coord_flip() +
+  xlab("Major industry for company") +
+  ylab("Total amount of firms")
+```
 
 
 Data Equity:

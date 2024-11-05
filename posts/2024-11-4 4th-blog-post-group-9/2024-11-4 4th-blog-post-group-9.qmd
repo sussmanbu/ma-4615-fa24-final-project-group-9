@@ -1,7 +1,11 @@
 ---
-title: "4rd blog post group 9"
+title: "4th blog post group 9"
 author: "Group 9"
 date: "2024-11-4"
 date-modified: "2024-11-4"
 draft: FALSE
 ---
+
+While cleaning the data, there was one specific variable, the revenue, which has way more NA values in it than any other variables. However, as a very significant numerical variable, it would be a pretty big loss to the data set if we really completely ignore this variable and let it go. As a result, two sets of cleaned data was presented, one with the revenues presented but as a result of data cleaning, there are only 16879 data points left, and one without without the revenue variable to provide more information about all other variables, and as a result, has 43575 data points left.
+
+After all works done, the data has seven categorical variables, which includes the sector of industry of the company, the sex label, the ethical group label, the race label, the veteran label, the time company has been in the industry and the year that data was collected. There are also three numerical variables including the number of employers, the number of employees and their payrolls. The standard error for those variables are also included. In one of the data sets, the revenue and standard error for the revenue is also included.

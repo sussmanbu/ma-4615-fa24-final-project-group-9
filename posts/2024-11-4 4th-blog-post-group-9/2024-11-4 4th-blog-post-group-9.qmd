@@ -10,14 +10,14 @@ While cleaning the data, there was one specific variable, the revenue, which has
 
 After all works done, the data has seven categorical variables, which includes the sector of industry of the company, the sex label, the ethical group label, the race label, the veteran label, the time company has been in the industry and the year that data was collected. There are also three numerical variables including the number of employers, the number of employees and their payrolls. The standard error for those variables are also included. In one of the data sets, the revenue and standard error for the revenue is also included.
 
+```{r}
+#| output: FALSE
 data <- readRDS(here::here("dataset/cleaned_data_N_revenue.rds"))
 
 data
-
 # Basic data exploration
 str(data)
 summary(data)
-
 
 ## Average Employment Trends by Race
 
@@ -29,7 +29,8 @@ library(scales)
 format_m <- function(x) {
   paste0(round(x/1000000, 1), "M")
 }
-
+```
+```{r}
 # Employment trends by race
 data %>%
   filter(!RACE_GROUP_LABEL %in% c("Total", "Unclassifiable", "Classifiable")) %>%
@@ -48,5 +49,5 @@ data %>%
   theme(legend.position = "bottom",
         legend.text = element_text(size = 8),
         panel.grid.minor = element_blank())
-
+```
 In this table we are able to see the average employment trends by race. The trend starts in 2017 and ends in 2021. While most race categories during this time remain below the 1 million average number mark, the White and Non-minority race categories quickly rise in the first year and remain fairly stagnant at about the 4 million average employee mark. All other races either remain very low in average employee count or grow slightly. These other numbers also stagnated at their lower average numbers. 

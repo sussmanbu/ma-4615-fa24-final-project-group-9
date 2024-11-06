@@ -51,3 +51,13 @@ data %>%
         panel.grid.minor = element_blank())
 ```
 In this table we are able to see the average employment trends by race. The trend starts in 2017 and ends in 2021. While most race categories during this time remain below the 1 million average number mark, the White and Non-minority race categories quickly rise in the first year and remain fairly stagnant at about the 4 million average employee mark. All other races either remain very low in average employee count or grow slightly. These other numbers also stagnated at their lower average numbers. 
+
+
+
+The bar chart shows the trend in annual pay from 2017 to 2021, with a notable peak in 2017, followed by a sharp decrease in 2018, and relative stability from 2018 to 2021. The initial high level in 2017 suggests that this year had an unusual spike in earnings, significantly above the levels seen in subsequent years.
+
+From 2017 to 2018, there was a significant drop in annual pay. This decline might be due to one-time factors that impacted 2017, such as special bonuses, incentives, or policy changes that increased earnings temporarily. Additionally, shifts in economic conditions or organizational budget adjustments could explain the substantial decrease seen in 2018.
+
+Between 2018 and 2021, the annual pay stabilized, with only minor fluctuations. This steady trend may reflect a period of economic balance or consistent salary structures, suggesting that the organization or industry aimed for controlled spending and sustainable pay levels. Economic factors, such as inflation adjustments or policy regulations, might have contributed to maintaining this stable pay pattern.
+
+Overall, the data indicates that after the spike in 2017, annual pay was adjusted to a more sustainable level in subsequent years. This pattern suggests possible restructuring or cost-cutting measures aimed at achieving long-term financial stability.

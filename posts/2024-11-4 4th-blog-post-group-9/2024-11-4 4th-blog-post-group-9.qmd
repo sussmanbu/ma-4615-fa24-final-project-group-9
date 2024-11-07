@@ -30,6 +30,7 @@ summary(data)
 library(ggplot2)
 library(dplyr)
 library(scales)
+library(tidyverse)
 
 # Function to format numbers in millions
 format_m <- function(x) {
@@ -64,7 +65,7 @@ lower average numbers.
 ```{r}
 
 # Load your data
-data <- read_rds(here::here("dataset/cleaned_data_N_revenue.rds")) 
+data <- readRDS(here::here("dataset/cleaned_data_N_revenue.rds")) 
 data_long <- data %>%
   group_by(SEX_LABEL) |>
   select(SEX_LABEL, YEAR, PAYANN)

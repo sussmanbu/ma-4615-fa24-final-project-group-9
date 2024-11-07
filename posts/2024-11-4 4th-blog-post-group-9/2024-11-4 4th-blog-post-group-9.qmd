@@ -63,10 +63,8 @@ lower average numbers.
 
 ```{r}
 
-library(tidyverse)
-
 # Load your data
-data <- read_rds("C:/Users/loveh/Downloads/cleaned_data_N_revenue (1).rds") 
+data <- read_rds(here::here("dataset/cleaned_data_N_revenue.rds")) 
 data_long <- data %>%
   group_by(SEX_LABEL) |>
   select(SEX_LABEL, YEAR, PAYANN)

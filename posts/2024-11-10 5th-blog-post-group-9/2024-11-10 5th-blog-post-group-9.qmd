@@ -1,0 +1,22 @@
+---
+title: "5th blog post group 9"
+author: "Group 9"
+date: "2024-11-10"
+date-modified: "2024-11-10"
+draft: FALSE
+---
+
+
+```{r}
+library(tidyverse)
+
+data <- read_rds(here::here("dataset", "Population by race and sex per year.rds"))
+
+data |>
+  group_by(race) |>
+  filter(sex != "Total") |>
+  ggplot() +
+  geom_col(aes(x = year, y = Total, fill = sex), show.legend = TRUE) +
+  facet_wrap(~race, ncol = 3, nrow = 2) +
+  scale_y_continuous(n.breaks = 3)
+```

@@ -20,3 +20,5 @@ data |>
   facet_wrap(~race, ncol = 3, nrow = 2) +
   scale_y_continuous(n.breaks = 3)
 ```
+
+Our group decided to combine our original data (employment trends) with US census data, which has the population of each race and sex for each year. There were no major issues getting the census data; however, it did take a bit of time to combine all the years we wanted to examine into one final dataset. When the data was finally combined, we created a facet-wrapped graph that was grouped by race and filtered by sex. The facet-wrap was done by race as well. Using this graph, we can see the population by race and sex per year. There is a clear majority for the "White" population when combining the data and other racial groups such as, "Asian", "Black", and "Some Other Race" trail behind. The split between genders (Male and Female) is somewhat even in all racial groups. 

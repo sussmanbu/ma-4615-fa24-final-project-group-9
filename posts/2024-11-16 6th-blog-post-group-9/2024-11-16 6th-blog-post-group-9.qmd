@@ -1,0 +1,16 @@
+```{r}
+library(ggplot2)
+data <- readRDS("C:/Users/loveh/Downloads/Population by race and sex per year.rds")
+ggplot(data, aes(x = year, y = Total, color = race)) +
+  geom_line() +
+  labs(title = "Population Trend by Race and Year")
+model <- lm(Total ~ race + sex + year, data = data)
+summary(model)
+```
+
+To understand the trends, we created a line plot where the x-axis represented the year, 
+the y-axis showed the total population, and different colors highlighted the races. 
+This helped us see how the population changed over time for each group. 
+Next, we built a linear regression model to analyze how race, sex, and year influenced the total population. 
+Finally, we used the model summary to understand which factors had the biggest impact and whether the results were statistically significant. 
+This process combined visual exploration with statistical analysis to uncover meaningful patterns in the data.

@@ -1,0 +1,16 @@
+{
+  "hash": "2987caaa0cb954364087f51899be35bc",
+  "result": {
+    "markdown": "---\ntitle: \"5th blog post group 9\"\nauthor: \"Group 9\"\ndate: \"2024-11-10\"\ndate-modified: \"2024-11-10\"\ndraft: FALSE\n---\n\n::: {.cell}\n\n```{.r .cell-code}\nlibrary(tidyverse)\n```\n\n::: {.cell-output .cell-output-stderr}\n```\n── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──\n✔ dplyr     1.1.4     ✔ readr     2.1.5\n✔ forcats   1.0.0     ✔ stringr   1.5.1\n✔ ggplot2   3.5.1     ✔ tibble    3.2.1\n✔ lubridate 1.9.3     ✔ tidyr     1.3.1\n✔ purrr     1.0.2     \n── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──\n✖ dplyr::filter() masks stats::filter()\n✖ dplyr::lag()    masks stats::lag()\nℹ Use the conflicted package (<http://conflicted.r-lib.org/>) to force all conflicts to become errors\n```\n:::\n\n```{.r .cell-code}\ndata <- read_rds(here::here(\"dataset\", \"Population by race and sex per year.rds\"))\n\ndata |>\n  group_by(race) |>\n  filter(sex != \"Total\") |>\n  ggplot() +\n  geom_col(aes(x = year, y = Total, fill = sex), show.legend = TRUE) +\n  facet_wrap(~race, ncol = 3, nrow = 2) +\n  scale_y_continuous(n.breaks = 3)\n```\n\n::: {.cell-output-display}\n![](2024-11-10-5th-blog-post-group-9_files/figure-html/unnamed-chunk-1-1.png){width=672}\n:::\n:::\n\n\nOur group decided to combine our original data (employment trends) with US census data, which has the population of each race and sex for each year. There were no major issues getting the census data; however, it did take a bit of time to combine all the years we wanted to examine into one final dataset. When the data was finally combined, we created a facet-wrapped graph that was grouped by race and filtered by sex. The facet-wrap was done by race as well. Using this graph, we can see the population by race and sex per year. There is a clear majority for the \"White\" population when combining the data and other racial groups such as, \"Asian\", \"Black\", and \"Some Other Race\" trail behind. The split between genders (Male and Female) is somewhat even in all racial groups. \n",
+    "supporting": [
+      "2024-11-10-5th-blog-post-group-9_files"
+    ],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}

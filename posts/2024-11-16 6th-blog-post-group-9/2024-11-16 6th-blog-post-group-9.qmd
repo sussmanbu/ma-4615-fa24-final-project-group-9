@@ -37,4 +37,8 @@ Next, we built a linear regression model to analyze how race, sex, and year infl
 Finally, we used the model summary to understand which factors had the biggest impact and whether the results were statistically significant. 
 This process combined visual exploration with statistical analysis to uncover meaningful patterns in the data.
 
-In addition, to analyze the population distribution, we created a bar chart where the x-axis represented racial groups, the y-axis displayed the total population, and different colors were used to distinguish between sexes (Male and Female). This visualization provided a clear comparison of population sizes across racial groups and highlighted significant disparities, such as the much larger White population compared to other racial groups. The chart also revealed slight differences between male and female populations within each race.
+In addition, to analyze the population distribution, we created a bar chart where the x-axis represented racial groups, the y-axis 
+displayed the total population, and different colors were used to distinguish between sexes (Male and Female). This visualization 
+provided a clear comparison of population sizes across racial groups and highlighted significant disparities, such as the much larger
+White population compared to other racial groups. The chart also revealed slight differences between male and female populations within
+each race.

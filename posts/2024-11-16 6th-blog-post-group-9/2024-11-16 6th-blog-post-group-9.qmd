@@ -9,7 +9,7 @@ draft: FALSE
 
 ```{r}
 library(ggplot2)
-data <- readRDS("C:/Users/loveh/Downloads/Population by race and sex per year.rds")
+data <- readRDS(here::here("dataset","Population by race and sex per year.rds"))
 ggplot(data, aes(x = year, y = Total, color = race)) +
   geom_line() +
   labs(title = "Population Trend by Race and Year")

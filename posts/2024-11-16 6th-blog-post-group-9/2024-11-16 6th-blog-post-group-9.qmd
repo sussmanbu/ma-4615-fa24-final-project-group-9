@@ -17,9 +17,24 @@ model <- lm(Total ~ race + sex + year, data = data)
 summary(model)
 ```
 
+```{r}
+filtered_data <- data[data$sex != "Total", ]
+library(ggplot2)
+
+ggplot(filtered_data, aes(x = race, y = Total, fill = sex)) +
+  geom_bar(stat = "identity", position = "dodge") +
+  labs(title = "Population by Race and Sex",
+       x = "Race", y = "Population") +
+  theme_minimal() +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))
+
+```
+
 To understand the trends, we created a line plot where the x-axis represented the year, 
 the y-axis showed the total population, and different colors highlighted the races. 
 This helped us see how the population changed over time for each group. 
 Next, we built a linear regression model to analyze how race, sex, and year influenced the total population. 
 Finally, we used the model summary to understand which factors had the biggest impact and whether the results were statistically significant. 
 This process combined visual exploration with statistical analysis to uncover meaningful patterns in the data.
+
+In addition, to analyze the population distribution, we created a bar chart where the x-axis represented racial groups, the y-axis displayed the total population, and different colors were used to distinguish between sexes (Male and Female). This visualization provided a clear comparison of population sizes across racial groups and highlighted significant disparities, such as the much larger White population compared to other racial groups. The chart also revealed slight differences between male and female populations within each race.

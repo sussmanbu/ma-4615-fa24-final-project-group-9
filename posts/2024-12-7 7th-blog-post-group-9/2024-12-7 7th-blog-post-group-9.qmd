@@ -6,8 +6,43 @@ date-modified: "2024-12-07"
 draft: FALSE
 ---
 
-
-
 First, we decided to continue exploring other factors that can affect income,
-seeing how income has changed over years. 
-Since we have not seen and analyzed this important factors. 
+seeing how income has changed over years. Since we have not seen and analyzed 
+this important factors. 
+
+The tentative thesis we decided to choose is that the condition for the minority
+group and the groups needing more care from are not great through the years. 
+This could be discussed for several groups, including veteran groups and 
+minority races, and from several aspects, including average income, 
+employment rate, and the current revenue of firms with more groups needing help,
+and the change of amount of new opening business by that group. Under this 
+paragraph is a plot of change of average income through year. From here,
+the condition doesn't seem so well for minority groups. Although the average
+income for non-minority is having an increasing trend, it doesn't increase as 
+much for minority and there sure needs something to be done. We have also made a 
+plot for how the employees of each race have changed through year in blogpost 4,
+which doesn't seem so well for minority groups as well.
+
+
+```{r, echo = FALSE, results = 'hide', message = FALSE}
+library(tidyverse)
+data <- readRDS(here::here("dataset/cleaned_data_W_revenue_combined.rds"))
+attach(data)
+```
+```{r}
+data |>
+  mutate(average_income = PAYANN / EMP * 1000) |>
+  filter(VET_GROUP_LABEL == "Total",
+         NAICS2017_LABEL == "Total for all sectors",
+         ETH_GROUP_LABEL == "Total",
+         SEX_LABEL == "Total") |>
+  subset(select = c(average_income, YEAR, RACE_GROUP_LABEL, YIBSZFI_LABEL)) |>
+  group_by(RACE_GROUP_LABEL) |>
+  filter(RACE_GROUP_LABEL %in% c("Nonminority", "Minority", "Equally minority/nonminority")) |>
+  filter(YIBSZFI_LABEL %in% c("Firms with less than 2 years in business", "Firms with 16 or more years in business","Firms with 4 to 5 years in business")) |>
+  ggplot() +
+  geom_line(aes(x = YEAR, y = average_income, color = RACE_GROUP_LABEL, linetype = YIBSZFI_LABEL)) +
+  labs(color = 'Race category', 
+       linetype = "Years in business") +
+  ylab("Average income / $")
+```

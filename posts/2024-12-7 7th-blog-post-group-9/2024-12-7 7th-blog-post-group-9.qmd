@@ -46,3 +46,41 @@ data |>
        linetype = "Years in business") +
   ylab("Average income / $")
 ```
+
+
+## Plan to improve Visualizations:
+### Titles and Captions:
+Use descriptive titles that summarize the key insight of each graph (e.g., "Trends in Average Employment by Racial Groups (2017–2021)").
+
+Add captions to provide context for each visualization, explaining the data source, key variables, and the main takeaway.
+
+### Annotations:
+Highlight key data points or trends with annotations. For example, mark significant peaks or declines in a line graph and explain them briefly (e.g., "2017 Peak due to policy changes").
+
+### Highlights:
+Use color schemes to emphasize important trends or categories. For instance, consistent colors for specific racial groups across all graphs will help in comparison.
+
+Employ ggpubr functions like ggpar() to refine axis labels, text sizes, and legends for clarity.
+
+### Polished Designs:
+Utilize ggpubr for adding statistical comparisons (e.g., stat_compare_means()) to support data interpretation.
+Add gridlines or adjust themes for better visual appeal using theme_pubr().
+
+## Tables:
+
+### Title and Context:
+Include clear, bold titles for each table summarizing its content (e.g., "Annual Payroll Trends Across Demographics (2017–2021)").
+
+Add concise footnotes explaining data sources or column definitions.
+
+### Formatting with GT:
+Use the gt package to format tables professionally. Features like grouping rows, adding summary rows, and highlighting columns can improve readability.
+
+Add highlights for significant figures, such as changes in revenue or employment disparities.
+
+## Next Steps:
+Apply a consistent style across all visualizations and tables, focusing on simplicity and accessibility.
+
+Review for alignment between visualizations and narrative, ensuring that every figure and table directly supports your analysis and conclusions.
+
+Validate design choices with peers or advisors for clarity and impact.

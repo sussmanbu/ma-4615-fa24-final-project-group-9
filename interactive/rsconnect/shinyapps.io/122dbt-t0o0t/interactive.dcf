@@ -1,0 +1,12 @@
+name: interactive
+title: interactive
+username: 122dbt-t0o0t
+account: 122dbt-t0o0t
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 13591500
+bundleId: 9515408
+url: https://122dbt-t0o0t.shinyapps.io/interactive/
+version: 1
+asMultiple: FALSE
+asStatic: FALSE

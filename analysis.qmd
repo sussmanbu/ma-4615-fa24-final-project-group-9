@@ -26,8 +26,24 @@ The code below shows an example of loading the loan refusal data set (which you 
 
 ```{r}
 library(tidyverse)
-print(getwd())
-data <- read_rds(here::here("dataset/loan_refusal_clean.rds"))
+data <- readRDS(here::here("dataset/cleaned_data_W_revenue_combined.rds"))
+temp <- data |>
+  mutate(average_income = PAYANN / EMP * 1000) |>
+  filter(
+    VET_GROUP_LABEL == "Total",
+    NAICS2017_LABEL == "Total for all sectors",
+    ETH_GROUP_LABEL == "Total",
+  ) 
+  #filter(YIBSZFI_LABEL == "Firms with less than 2 years in business")
+ml <- lm(average_income ~ Population, temp)
+summary(ml)
+plot(ml)
+ggplot(temp) +
+  geom_point(aes(y = average_income, x = Population)) 
+ggplot(temp) +
+  geom_histogram(aes(x = average_income))
+
+
 ```
 
 ## Note on Attribution

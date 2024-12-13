@@ -9,6 +9,7 @@ format:
       - shinylive-sw.js
 filters:
   - shinylive
+runtime: shiny
 ---
 
 ![](images/The_Big_Picture_2.jpeg)
@@ -30,18 +31,15 @@ Your Big Data page should also include a small interactive dashboard. The dashbo
 
 
 
-```{r echo = FALSE, results = 'hide'}
-#| echo: FALSE
-#| eval: FALSE
-
+```{r, echo = FALSE}
+#| standalone: true
+#| height: 975
 
 library(shiny)
+library(shinylive)
 library(tidyverse)
 options("readr.edition" = 1) # keep this to ensure you can download the data
 data <- readRDS(here::here("dataset/cleaned_data_W_revenue_combined.rds"))
-
-```
-```{r echo = FALSE}
 
 # Define UI for app that draws a line graph ----
 ui <- fluidPage(
@@ -105,7 +103,7 @@ ui <- fluidPage(
   ),   
   mainPanel(
     plotOutput(outputId = "distPlot"),
-    style = "width: 900px;" 
+    style = "width: 800px; height: 500px" 
   )
 )
 
@@ -137,9 +135,7 @@ server <- function(input, output) {
 # Create Shiny app ----
 shinyApp(ui = ui, server = server)
 ```
-```{r}
 
-```
 ---
 
 ## Rubric: On this page

@@ -28,9 +28,16 @@ You will also be required to make an interactive dashboard like [this one](/flex
 
 Your Big Data page should also include a small interactive dashboard. The dashboard should be created either using Shinylive, as below. This interactive component should in some way support your thesis from your big picture page. Good interactives often provide both high-level understanding of the data while allowing a user to investigate specific scenarios, observations, subgroups, etc.
 
-```{r, echo = FALSE, message = FALSE}
+```{shinylive-r}
+#| standalone: true
+#| height: 975
+
 library(tidyverse)
-data <- readRDS(here::here("dataset/cleaned_data_W_revenue_combined.rds")) |>
+library(shiny)
+
+options("readr.edition" = 1) # keep this to ensure you can download the data
+
+data <- readr::read_rds("https://sussmanbu.github.io/ma-4615-fa24-final-project-group-9/scripts/cleaned_data_W_revenue_combined.rds")) |>
   mutate(average_income = PAYANN / EMP * 1000) |>
   filter(
     VET_GROUP_LABEL == "Total",
@@ -38,17 +45,6 @@ data <- readRDS(here::here("dataset/cleaned_data_W_revenue_combined.rds")) |>
     ETH_GROUP_LABEL == "Total",
     SEX_LABEL == "Total",
   )
-attach(data)
-
-```
-
-```{shinylive-r}
-#| standalone: true
-
-
-library(shiny)
-
-options("readr.edition" = 1) # keep this to ensure you can download the data
 
 # Define UI for app that draws a line graph ----
 ui <- fluidPage(
@@ -105,7 +101,6 @@ server <- function(input, output, session) {
 # Create Shiny app ----
 shinyApp(ui = ui, server = server)
 ```
-
 
 ---
 

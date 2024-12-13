@@ -30,8 +30,9 @@ Your Big Data page should also include a small interactive dashboard. The dashbo
 
 
 
-```{r}
-#| echo: false
+```{r echo = FALSE, results = 'hide'}
+#| echo: FALSE
+#| eval: FALSE
 
 
 library(shiny)
@@ -40,8 +41,8 @@ options("readr.edition" = 1) # keep this to ensure you can download the data
 data <- readRDS(here::here("dataset/cleaned_data_W_revenue_combined.rds"))
 
 ```
-```{r}
-#| eval: false
+```{r echo = FALSE}
+
 # Define UI for app that draws a line graph ----
 ui <- fluidPage(
   # App title ----

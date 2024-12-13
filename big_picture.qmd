@@ -9,7 +9,6 @@ format:
       - shinylive-sw.js
 filters:
   - shinylive
-runtime: shiny
 ---
 
 ![](images/The_Big_Picture_2.jpeg)
@@ -29,17 +28,26 @@ You will also be required to make an interactive dashboard like [this one](/flex
 
 Your Big Data page should also include a small interactive dashboard. The dashboard should be created either using Shinylive, as below. This interactive component should in some way support your thesis from your big picture page. Good interactives often provide both high-level understanding of the data while allowing a user to investigate specific scenarios, observations, subgroups, etc.
 
+```{r, echo = FALSE, message = FALSE}
+library(tidyverse)
+data <- readRDS(here::here("dataset/cleaned_data_W_revenue_combined.rds")) |>
+  mutate(average_income = PAYANN / EMP * 1000) |>
+  filter(
+    VET_GROUP_LABEL == "Total",
+    NAICS2017_LABEL == "Total for all sectors",
+    ETH_GROUP_LABEL == "Total",
+    SEX_LABEL == "Total",
+  )
+attach(data)
+```
 
-
-```{r, echo = FALSE}
+```{shinylive-r}
 #| standalone: true
 #| height: 975
 
 library(shiny)
-library(shinylive)
-library(tidyverse)
+
 options("readr.edition" = 1) # keep this to ensure you can download the data
-data <- readRDS(here::here("dataset/cleaned_data_W_revenue_combined.rds"))
 
 # Define UI for app that draws a line graph ----
 ui <- fluidPage(
@@ -55,42 +63,6 @@ ui <- fluidPage(
                   multiple = TRUE)
     )
   ),
-  actionButton("show_Vet", "Show/Hide Veteran choice"),
-  conditionalPanel(
-    condition = "input.show_Vet % 2 == 1",  # Shows this panel when button 2 is clicked
-    fluidRow(
-      selectInput("Veteran", "Choose the Veteran Group",
-                  unique(data$VET_GROUP_LABEL),
-                  selected = "Total"),
-    )
-  ),
-  actionButton("show_Ind", "Show/Hide Industry choice"),
-  conditionalPanel(
-    condition = "input.show_Ind % 2 == 1",  # Shows this panel when button 2 is clicked
-    fluidRow(
-      selectInput("Industry", "Choose the Industry Group",
-                  unique(data$NAICS2017_LABEL),
-                  selected = "Total for all sectors"),
-    )
-  ),  
-  actionButton("show_Sex", "Show/Hide Sex choice"),
-  conditionalPanel(
-    condition = "input.show_Sex % 2 == 1",  # Shows this panel when button 2 is clicked
-    fluidRow(
-      selectInput("Sex", "Choose the Sex group",
-                  unique(data$SEX_LABEL),
-                  selected = "Total"),
-    )
-  ),  
-  actionButton("show_Eth", "Show/Hide Ethnical choice"),
-  conditionalPanel(
-    condition = "input.show_Eth % 2 == 1",  # Shows this panel when button 2 is clicked
-    fluidRow(
-      selectInput("Eth", "Choose the Ethnical group",
-                  unique(data$ETH_GROUP_LABEL),
-                  selected = "Total"),
-    )
-  ),    
   actionButton("show_Age", "Show/Hide Years in industry choice"),
   conditionalPanel(
     condition = "input.show_Age % 2 == 1",  # Shows this panel when button 2 is clicked
@@ -113,13 +85,10 @@ server <- function(input, output) {
 
   output$distPlot <- renderPlot({
     data |>
-      mutate(average_income = PAYANN / EMP * 1000) |>
-      filter(VET_GROUP_LABEL %in% input$Veteran,
-             NAICS2017_LABEL %in% input$Industry,
-             ETH_GROUP_LABEL %in% input$Eth,
-             SEX_LABEL %in% input$Sex,
+      filter(
              RACE_GROUP_LABEL %in% input$Race,
-             YIBSZFI_LABEL %in% input$Age) |>
+             YIBSZFI_LABEL %in% input$Age
+             ) |>
       subset(select = c(average_income, YEAR, RACE_GROUP_LABEL, YIBSZFI_LABEL)) |>
       group_by(RACE_GROUP_LABEL) |>
       ggplot() +

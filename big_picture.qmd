@@ -30,48 +30,104 @@ Your Big Data page should also include a small interactive dashboard. The dashbo
 
 
 
-
-```{shinylive-r}
-#| standalone: true
-#| viewerHeight: 640 # You will have to adjust this to fit everything
+```{r}
+#| echo: false
 
 
 library(shiny)
 library(tidyverse)
 options("readr.edition" = 1) # keep this to ensure you can download the data
+data <- readRDS(here::here("dataset/cleaned_data_W_revenue_combined.rds"))
 
-
-# Define UI for app that draws a histogram ----
+```
+```{r}
+#| eval: false
+# Define UI for app that draws a line graph ----
 ui <- fluidPage(
-
   # App title ----
-  titlePanel("Hello Shiny!"),
-
-  # Sidebar layout with input and output definitions ----
-  verticalLayout(
-      # Input: Slider for the number of bins ----
-      sliderInput(inputId = "bins",
-                  label = "Number of bins:",
-                  min = 1,
-                  max = 50,
-                  value = 30),
-
-      # Output: Histogram ----
-      plotOutput(outputId = "distPlot")
-
+  titlePanel("The change of income for employees in certain groups throughout recent years"),
+  actionButton("show_Race", "Show/Hide Race choice"),
+  conditionalPanel(
+    condition = "input.show_Race % 2 == 1",  # Shows this panel when button 1 is clicked
+    fluidRow(
+      selectInput("Race", "Choose the races",
+                  unique(data$RACE_GROUP_LABEL),
+                  selected = "Total",
+                  multiple = TRUE)
+    )
+  ),
+  actionButton("show_Vet", "Show/Hide Veteran choice"),
+  conditionalPanel(
+    condition = "input.show_Vet % 2 == 1",  # Shows this panel when button 2 is clicked
+    fluidRow(
+      selectInput("Veteran", "Choose the Veteran Group",
+                  unique(data$VET_GROUP_LABEL),
+                  selected = "Total"),
+    )
+  ),
+  actionButton("show_Ind", "Show/Hide Industry choice"),
+  conditionalPanel(
+    condition = "input.show_Ind % 2 == 1",  # Shows this panel when button 2 is clicked
+    fluidRow(
+      selectInput("Industry", "Choose the Industry Group",
+                  unique(data$NAICS2017_LABEL),
+                  selected = "Total for all sectors"),
+    )
+  ),  
+  actionButton("show_Sex", "Show/Hide Sex choice"),
+  conditionalPanel(
+    condition = "input.show_Sex % 2 == 1",  # Shows this panel when button 2 is clicked
+    fluidRow(
+      selectInput("Sex", "Choose the Sex group",
+                  unique(data$SEX_LABEL),
+                  selected = "Total"),
+    )
+  ),  
+  actionButton("show_Eth", "Show/Hide Ethnical choice"),
+  conditionalPanel(
+    condition = "input.show_Eth % 2 == 1",  # Shows this panel when button 2 is clicked
+    fluidRow(
+      selectInput("Eth", "Choose the Ethnical group",
+                  unique(data$ETH_GROUP_LABEL),
+                  selected = "Total"),
+    )
+  ),    
+  actionButton("show_Age", "Show/Hide Years in industry choice"),
+  conditionalPanel(
+    condition = "input.show_Age % 2 == 1",  # Shows this panel when button 2 is clicked
+    fluidRow(
+      selectInput("Age", "Choose the Years in industry",
+                  unique(data$YIBSZFI_LABEL),
+                  selected = "Firms with less than 2 years in business",
+                  multiple = TRUE),
+    )
+  ),   
+  mainPanel(
+    plotOutput(outputId = "distPlot"),
+    style = "width: 900px;" 
   )
 )
 
 # Define server logic required to draw a histogram ----
 server <- function(input, output) {
-  # The URL below has to point to a dataset on your github pages website
-  # I recommend creating a small-ish rds file that has only the data relevant to 
-  # the interactive.
-  data <- read_rds("https://sussmanbu.github.io/ma4615-final-project-quarto/dataset/loan_refusal_clean.rds")
   
+
   output$distPlot <- renderPlot({
-    ggplot(data, aes(x = refusal_rate)) +
-      geom_histogram(bins = input$bins + 1)
+    data |>
+      mutate(average_income = PAYANN / EMP * 1000) |>
+      filter(VET_GROUP_LABEL %in% input$Veteran,
+             NAICS2017_LABEL %in% input$Industry,
+             ETH_GROUP_LABEL %in% input$Eth,
+             SEX_LABEL %in% input$Sex,
+             RACE_GROUP_LABEL %in% input$Race,
+             YIBSZFI_LABEL %in% input$Age) |>
+      subset(select = c(average_income, YEAR, RACE_GROUP_LABEL, YIBSZFI_LABEL)) |>
+      group_by(RACE_GROUP_LABEL) |>
+      ggplot() +
+      geom_line(aes(x = YEAR, y = average_income, color = RACE_GROUP_LABEL, linetype = YIBSZFI_LABEL)) +
+      labs(color = 'Race category', 
+           linetype = "Years in business") +
+      ylab("Average income / $")
 
   })
 
@@ -80,7 +136,9 @@ server <- function(input, output) {
 # Create Shiny app ----
 shinyApp(ui = ui, server = server)
 ```
+```{r}
 
+```
 ---
 
 ## Rubric: On this page

@@ -100,3 +100,6 @@ PAYANN_S: Relative standard error of annual payroll (%)
 
 **`load_and_clean_data.R` file
 https://github.com/sussmanbu/ma-4615-fa24-final-project-group-9/blame/main/dataset/cleaned_data_N_revenue_combined.rds
+
+[cleaning script](/scripts/load_and_clean_data.R)
+

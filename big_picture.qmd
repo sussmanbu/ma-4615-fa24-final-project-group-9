@@ -17,7 +17,114 @@ This comes from the file `big_picture.Rmd`.
 
 Think of this page as your 538/Upshot style article. This means that you should try to tell a story through the data and your analysis. Read articles from those sites and similar sites to get a feeling for what they are like. Try to write in the style of a news or popular article. Importantly, this page should be geared towards the general public. You shouldn't assume the reader understands how to interpret a linear regression or a complicated plot. Focus on interpretation and visualizations.
 
+```{r, echo = FALSE, warning = FALSE, message = FALSE}
+# just code for packages and data.
+library(tidyverse)
+library(dplyr)
+data <- readRDS(here::here("dataset/cleaned_data_W_revenue_combined.rds"))
+```
 
+```{r, echo = FALSE}
+# plot for average income between gender
+temp <- data |>
+  filter(
+    NAICS2017_LABEL == "Total for all sectors",
+    SEX_LABEL %in% c("Female", "Male"),
+    ETH_GROUP_LABEL == "Total",
+    RACE_GROUP_LABEL == "Total",
+    VET_GROUP_LABEL == "Total",
+    YEAR == 2021
+    ) |>
+  group_by(SEX_LABEL) |>
+  summarise(income = sum(PAYANN) / sum(EMP) * 1000)
+ggplot(temp) +
+  geom_col(aes(x = SEX_LABEL, y = income, fill = SEX_LABEL)) +
+  theme(legend.position = "none") +
+  ylab("Average income / $") +
+  xlab("Gender") +
+  ggtitle("The difference in average income for male and female in 2021")
+```
+```{r, echo = FALSE}
+# plot for income across races
+temp <- data |>
+  filter(
+    NAICS2017_LABEL == "Total for all sectors",
+    SEX_LABEL == "Total",
+    ETH_GROUP_LABEL == "Total",
+    VET_GROUP_LABEL == "Total",
+    RACE_GROUP_LABEL %in% c("White", "Native Hawaiian and Other Pacific Islander",
+                            "Asian", "American Indian and Alaska Native",
+                            "Black or African American"),
+    YEAR == 2021
+    ) |>
+  group_by(RACE_GROUP_LABEL) |>
+  summarise(income = sum(PAYANN) / sum(EMP) * 1000) |>
+  arrange(desc(income))
+ggplot(temp) +
+  geom_col(aes(x = reorder(RACE_GROUP_LABEL, -income), y = income, fill = RACE_GROUP_LABEL)) +
+  theme(legend.position = "none") +
+  ylab("Average income / $") +
+  xlab("Gender") +
+  ggtitle("The difference in average income for different races in 2021") +
+  theme(
+    axis.text.x = element_text(angle = -5),
+    axis.title.x = element_text(vjust = -1)
+  )
+```
+```{r, echo = FALSE}
+# plot for employees in different industries
+temp <- data |>
+  filter(
+    SEX_LABEL == "Total",
+    ETH_GROUP_LABEL == "Total",
+    VET_GROUP_LABEL == "Total",
+    RACE_GROUP_LABEL == "Total",
+    YEAR == 2021,
+    ) |>
+  group_by(NAICS2017_LABEL) |>
+  summarise(total = sum(EMP)) |>
+  arrange(desc(total)) |>
+  head(8) #Adjust here if want to add or reduce amount of industries. defaulted at 8 categories
+variable <- temp$total[1]
+temp$per <- round(temp$total / variable * 100)
+temp <- temp[-1, ]
+others = 100 - sum(temp$per)
+temp <- bind_rows(temp, data.frame(NAICS2017_LABEL =  "Others",
+                                   per = others))
+
+ggplot(temp, aes(x = "", y = per, fill = NAICS2017_LABEL)) +
+  geom_bar(stat = "identity", width = 1) +
+  coord_polar(theta = "y") +
+  labs(title = "Pie Chart For the distribution of jobs across industries") +
+  theme_void() +
+  geom_text(aes(label = paste(per, "%")), position = position_stack(vjust = 0.5), color = "white") +
+  theme(
+    legend.title = element_blank(),
+  )
+  
+```
+```{r, echo = FALSE}
+# plot for a trend between firm revenue and income for employees
+temp <- readRDS(here::here("dataset/cleaned_data_N_revenue_combined.rds")) |>
+  mutate(
+    revenue = RCPPDEMP / FIRMPDEMP,
+    income = PAYANN / EMP * 1000
+           )
+df <- temp |>
+  filter(
+    SEX_LABEL != "Total",
+    ETH_GROUP_LABEL == "Total",
+    VET_GROUP_LABEL == "Total",
+    RACE_GROUP_LABEL == "Total"
+  )
+ggplot(df) +
+  geom_smooth(aes(x = revenue, y = income, fill = "a"), color = "BLACK", linetype = "dashed") +
+  xlab("Revenue / 1000$") +
+  ylab("Income / $") +
+  ggtitle("The trend of income for employees with respect to annual revenue of firms")
+  
+
+```
 
 ---
 
@@ -28,79 +135,6 @@ You will also be required to make an interactive dashboard like [this one](/flex
 
 Your Big Data page should also include a small interactive dashboard. The dashboard should be created either using Shinylive, as below. This interactive component should in some way support your thesis from your big picture page. Good interactives often provide both high-level understanding of the data while allowing a user to investigate specific scenarios, observations, subgroups, etc.
 
-```{shinylive-r}
-#| standalone: true
-#| height: 975
-
-library(tidyverse)
-library(shiny)
-
-options("readr.edition" = 1) # keep this to ensure you can download the data
-
-data <- readr::read_rds("https://sussmanbu.github.io/ma-4615-fa24-final-project-group-9/scripts/cleaned_data_W_revenue_combined.rds")) |>
-  mutate(average_income = PAYANN / EMP * 1000) |>
-  filter(
-    VET_GROUP_LABEL == "Total",
-    NAICS2017_LABEL == "Total for all sectors",
-    ETH_GROUP_LABEL == "Total",
-    SEX_LABEL == "Total",
-  )
-
-# Define UI for app that draws a line graph ----
-ui <- fluidPage(
-  # App title ----
-  titlePanel("The change of income for employees in certain groups throughout recent years"),
-  actionButton("show_Race", "Show/Hide Race choice"),
-  conditionalPanel(
-    condition = "input.show_Race % 2 == 1",  # Shows this panel when button 1 is clicked
-    fluidRow(
-      selectInput("Race", "Choose the races",
-                  unique(data$RACE_GROUP_LABEL),
-                  selected = "Total",
-                  multiple = TRUE)
-    )
-  ),
-  actionButton("show_Age", "Show/Hide Years in industry choice"),
-  conditionalPanel(
-    condition = "input.show_Age % 2 == 1",  # Shows this panel when button 2 is clicked
-    fluidRow(
-      selectInput("Age", "Choose the Years in industry",
-                  unique(data$YIBSZFI_LABEL),
-                  selected = "Firms with less than 2 years in business",
-                  multiple = TRUE),
-    )
-  ),   
-  mainPanel(
-    plotOutput(outputId = "distPlot"),
-    style = "width: 800px; height: 500px" 
-  )
-)
-
-# Define server logic required to draw a histogram ----
-server <- function(input, output, session) {
-  
-
-  output$distPlot <- renderPlot({
-    data |>
-      filter(
-             RACE_GROUP_LABEL %in% input$Race,
-             YIBSZFI_LABEL %in% input$Age
-             ) |>
-      subset(select = c(average_income, YEAR, RACE_GROUP_LABEL, YIBSZFI_LABEL)) |>
-      group_by(RACE_GROUP_LABEL) |>
-      ggplot() +
-      geom_line(aes(x = YEAR, y = average_income, color = RACE_GROUP_LABEL, linetype = YIBSZFI_LABEL)) +
-      labs(color = 'Race category', 
-           linetype = "Years in business") +
-      ylab("Average income / $")
-
-  })
-
-}
-
-# Create Shiny app ----
-shinyApp(ui = ui, server = server)
-```
 
 ---
 

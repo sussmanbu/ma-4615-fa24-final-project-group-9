@@ -30,12 +30,12 @@ data <- readRDS(here::here("dataset/cleaned_data_W_revenue_combined.rds"))
 temp <- data |>
   mutate(average_income = PAYANN / EMP * 1000) |>
   filter(
-    VET_GROUP_LABEL == "Total",
     NAICS2017_LABEL == "Total for all sectors",
     ETH_GROUP_LABEL == "Total",
+    SEX_LABEL %in% c("Male", "Female")
   ) 
   #filter(YIBSZFI_LABEL == "Firms with less than 2 years in business")
-ml <- lm(average_income ~ Population, temp)
+ml <- lm(average_income ~ Population + SEX_LABEL, temp)
 summary(ml)
 plot(ml)
 ggplot(temp) +
@@ -46,6 +46,29 @@ ggplot(temp) +
 
 ```
 
+```{r}
+data2 <- readRDS(here::here("dataset/cleaned_data_N_revenue_combined.rds"))
+temp <- data2 |>
+  filter(FIRMPDEMP > 0,
+         EMP > 0) |>
+  mutate(
+    revenue = RCPPDEMP / FIRMPDEMP * 1000,
+    income = PAYANN / EMP * 1000
+           )
+df <- temp |>
+  filter(
+    SEX_LABEL != "Total",
+    ETH_GROUP_LABEL == "Total",
+    VET_GROUP_LABEL == "Total",
+    RACE_GROUP_LABEL != "Total"
+  )
+m <- lm(income ~ revenue, df)
+summary(m)
+ggplot(df) +
+  geom_point(aes(x = revenue, y = income)) +
+  geom_smooth(aes(x = revenue, y = income), method = "lm", se = FALSE, color = "red")
+
+```
 ## Note on Attribution
 
 In general, you should try to provide links to relevant resources, especially those that helped you. You don't have to link to every StackOverflow post you used but if there are explainers on aspects of the data or specific models that you found helpful, try to link to those. Also, try to link to other sources that might support (or refute) your analysis. These can just be regular hyperlinks. You don't need a formal citation.

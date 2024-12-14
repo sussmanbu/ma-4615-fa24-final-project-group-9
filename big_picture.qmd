@@ -44,6 +44,7 @@ ggplot(temp) +
   xlab("Gender") +
   ggtitle("The difference in average income for male and female in 2021")
 ```
+
 ```{r, echo = FALSE}
 # plot for income across races
 temp <- data |>
@@ -71,6 +72,7 @@ ggplot(temp) +
     axis.title.x = element_text(vjust = -1)
   )
 ```
+
 ```{r, echo = FALSE}
 # plot for employees in different industries
 temp <- data |>
@@ -103,6 +105,7 @@ ggplot(temp, aes(x = "", y = per, fill = NAICS2017_LABEL)) +
   )
   
 ```
+
 ```{r, echo = FALSE}
 # plot for a trend between firm revenue and income for employees
 temp <- readRDS(here::here("dataset/cleaned_data_N_revenue_combined.rds")) |>
@@ -118,7 +121,8 @@ df <- temp |>
     RACE_GROUP_LABEL == "Total"
   )
 ggplot(df) +
-  geom_smooth(aes(x = revenue, y = income, fill = "a"), color = "BLACK", linetype = "dashed") +
+  geom_smooth(aes(x = revenue, y = income, fill = "a"), color = "BLACK", linetype = "dashed",
+              method = "loess", formula = y ~ x) +
   xlab("Revenue / 1000$") +
   ylab("Income / $") +
   ggtitle("The trend of income for employees with respect to annual revenue of firms")

@@ -7,33 +7,13 @@ draft: false
 
 ![](https://upload.wikimedia.org/wikipedia/commons/7/77/Pebbleswithquarzite.jpg)
 
-This comes from the file `analysis.qmd`.
-
-We describe here our detailed data analysis. This page will provide an overview of what questions you addressed, illustrations of relevant aspects of the data with tables and figures, and a statistical model that attempts to answer part of the question. You'll also reflect on next steps and further analysis.
-
-The audience for this page is someone like your class mates, so you can expect that they have some level of statistical and quantitative sophistication and understand ideas like linear and logistic regression, coefficients, confidence intervals, overfitting, etc. 
-
-While the exact number of figures and tables will vary and depend on your analysis, you should target around 5 to 6. An overly long analysis could lead to losing points.
-If you want you can link back to your blog posts or create separate pages with more details.
-
-The style of this paper should aim to be that of an academic paper. 
-I don't expect this to be of publication quality but you should keep that aim in mind.
-Avoid using "we" too frequently, for example "We also found that ...". Describe your methodology and your findings but don't describe your whole process.
-
-
-I am showing all the codes and the result of them just so you can 
-read it directly from the site. After other things are finished, I will make sure
-those won't be visible. This part of text shall be deleted just like instructions
-from the professor
-Other plots and explanations shall be added here. Underneath are some new plots
-to work with.
-
 ```{r}
 library(tidyverse)
 library(ggplot2)
 library(gridExtra)
 
 data <- readRDS(here::here("dataset/cleaned_data_W_revenue_combined.rds"))
+data2 <- readRDS(here::here("dataset/cleaned_data_N_revenue_combined.rds"))
 temp <- data |>
   mutate(average_income = PAYANN / EMP * 1000) |>
   filter(
@@ -58,93 +38,53 @@ summary(ml)
 # as well as that for male.
 # The plot below basically says the same thing.
 ```
+**Date Cleaning**
 
-```{r}
-ggplot(temp) +
-  geom_point(aes(y = average_income, x = Population)) +
-  geom_smooth(aes(y = average_income, x = Population), 
-              method = "lm") +
-  ylab("Income / $")
+For our initial data cleaning, we started by selecting a subset of the data that contains key demographic and business characteristics, 
+focusing on columns with minimal missing values to ensure a more reliable analysis. We first removed rows with significant missing data
+to avoid skewing our results but kept those with minor gaps for further inspection. As part of exploratory data analysis (EDA), we 
+checked for unusual patterns, such as outliers, unexpectedly frequent or infrequent values, and relationships that align with or deviate
+from known trends. Below is an initial visualization showing the distribution of businesses by owner race and industry, helping us spot 
+potential data inconsistencies or biases.
+
+
+
+**The factors of affecting employment: A comprehensive analysis of race, job type, income and sex**
+
+## Introduction
+
+The job market in the United States has become increasingly competitive in recent years. Various economic, social, and technological factors contribute to this complexity, ranging from automation and globalization to shifts in labor demand across industries. 
+
+To better understand the underlying causes of this phenomenon, an analysis of employment trends in the U.S need to be conducted, using data from the United States Census Bureau and the National Center for Science and Engineering Statistics (NCSES). Specifically, the analysis focus on employment patterns between 2017 and 2021 to identify the factors influencing job availability and workforce participation. This study aims to shed light on the relationship between race, types of employment, income and employment, and how they collectively shape the U.S. labor market.
+
+## Analysis
+
+1. Race and employment
+
+One of the issues in the analysis of employment data is the disparity between different racial groups, reflecting structural inequality in the labor market. 
+
+```{r analysis1}
+# Employment trends by race
+data2 %>%
+  filter(!RACE_GROUP_LABEL %in% c("Total", "Unclassifiable", "Classifiable")) %>%
+  group_by(YEAR, RACE_GROUP_LABEL) %>%
+  summarise(avg_employment = mean(EMP), .groups = 'drop') %>%
+  ggplot(aes(x = YEAR, y = avg_employment, color = RACE_GROUP_LABEL)) +
+  geom_line(linewidth = 1) +
+  geom_point(size = 3, alpha = 0.8) +
+  theme_minimal() +
+  labs(title = "Average Employment Trends by Race",
+       subtitle = "Excluding Total, Unclassifiable, and Classifiable categories",
+       x = "Year",
+       y = "Average Number of Employees",
+       color = "Race") +
+  theme(legend.position = "bottom",
+        legend.text = element_text(size = 8),
+        panel.grid.minor = element_blank())
 ```
-```{r}
-lm_s <- function(category) {
-  temp <- data |>
-    filter(EMP > 0) |>
-    mutate(average_income = PAYANN / EMP * 1000) |>
-    filter(
-      NAICS2017_LABEL == category,
-      ETH_GROUP_LABEL == "Total",
-      SEX_LABEL %in% c("Male", "Female"),
-      VET_GROUP_LABEL == "Total"
-    )  
-  return(
-    lm(average_income ~ Population + SEX_LABEL, temp)
-  )
-}
+The line graph shows the average number of employees across racial categories from 2017 to 2021, excluding “Total”, “Unclassifiable”, and “Classifiable” categories. The line for the “White” population (nonminority) consistently shows the highest average employment numbers. While other racial groups like “Asian”, “Black or African American” have comparatively lower and more consistent employment averages over the years. 
 
-temp <- data |>
-  filter(
-    SEX_LABEL == "Total",
-    ETH_GROUP_LABEL == "Total",
-    VET_GROUP_LABEL == "Total",
-    RACE_GROUP_LABEL == "Total",
-    YEAR == 2021,
-    ) |>
-  group_by(NAICS2017_LABEL) |>
-  summarise(total = sum(EMP)) |>
-  arrange(desc(total)) |>
-  head(8)
-
-categories <- temp$NAICS2017_LABEL
-categories <- categories[2:7]
-
-ml_s <- lapply(categories, lm_s)
-lapply(ml_s, summary)
-
-# Here's an deeper look into each industry and their income for people 
-# The six categories with most employees are chosen in this case.
-# In most of them, Male employees are still getting more money excluding 
-# <Administrative and support and waste management and remediation services> and
-# <Accommodation and food services>, which is kind of fair when looking at. 
-# However, only two industries can see some preference for offering
-# higher wage for major race, which are <retail trade> and <manufacturing>
-
-# I will stop analyzing here, since these are just some basic info.
-# But when you guys are writing analysis, there should be a lot to be able to 
-# talk about in this part I guess? This really seem like something you can really
-# expand on easily.
-
-# Underneath is also a plot of those categories to go with the topic, good luck!
-```
-
-```{r}
-lm_plot <- function(category) {
-  temp <- data |>
-    filter(EMP > 0) |>
-    mutate(average_income = PAYANN / EMP * 1000) |>
-    filter(
-      NAICS2017_LABEL == category,
-      ETH_GROUP_LABEL == "Total",
-      SEX_LABEL %in% c("Male", "Female"),
-      VET_GROUP_LABEL == "Total"
-    )  
-  return(
-    ggplot(temp) +
-      geom_point(aes(y = average_income, x = Population)) +
-      geom_smooth(aes(y = average_income, x = Population), 
-                  method = "lm") +
-      ylab("Income / $") +
-      ggtitle(strwrap(category,
-                      width = 30)) +
-      theme(
-        plot.title = element_text(size = 10, vjust = 1)  # Customize size and alignment
-      )
-  )
-}
-
-plots <- lapply(categories, lm_plot)
-do.call(grid.arrange, c(plots, ncol = 3))
-```
+In 2018, almost all races had the largest increase in average employment, especially for the “White” category. Based on the background information, we can infer that the reason might be attributed to the strong economic growth in the U.S., which increased job availability. This likely benefited the largest demographic group (“White”) more due to the pre-existing economic advantages.
 
 ```{r}
 data |>
@@ -162,10 +102,35 @@ data |>
   labs(color = 'Race category', 
        linetype = "Years in business") +
   ylab("Average income / $")
-
-# Some reused code from blog post 7, showing how minority and majority races' income have changed in years
-# for older, younger and in the middle companies.
 ```
+This graph shows the impact of race and years in business on average income levels from 2017 to 2021. Same as the previous analysis, "Nonminority" firms consistently earn higher incomes compared to "Minority" and "Equally minority/nonminority" firms, with long-established businesses (16+ years) outperforming newer firms across all categories. The year 2019 saw a sharp income spike, particularly for younger firms. We can infer the potential reason that policies such as Small Business Administration (SBA) loans, streamlined regulatory processes, increased federal procurement opportunities, and entrepreneurship promotion programs created a supportive environment for younger firms to thrive and achieve higher average incomes. 
+
+However, in the graph, from 2019 to 2020, there is a big decrease, potential because the COVID-19 pandemic in 2020 caused a notable decline across all groups, disproportionately affecting minority-owned and younger businesses. By 2021, income levels began recovering, with established "Non Minority" firms recovering more quickly than others, underscoring systemic disparities in resilience and resource access. 
+
+
+2. Different kinds of employment
+
+The type of jobs is also a key factor in affecting employment in the US. 
+
+```{r}
+data |>
+  filter(RACE_GROUP_LABEL == "Total",
+         NAICS2017_LABEL != "Total for all sectors",
+         SEX_LABEL == "Total",
+         ETH_GROUP_LABEL == "Total",
+         VET_GROUP_LABEL == "Total",
+         YEAR == 2017) |>
+  ggplot() +
+  geom_col(aes(x = NAICS2017_LABEL, y = FIRMPDEMP, fill = NAICS2017_LABEL), show.legend = FALSE) +
+  coord_flip() +
+  xlab("Major industry for company") +
+  ylab("Total amount of firms")
+```
+The graph shows the distribution of job opportunities across various industries based on the number of firms. It demonstrates that industries like professional, scientific, and technical services dominate the job market in terms of the number of firms, indicating their pivotal role in the economy. This suggests that sectors driven by knowledge, innovation, and essential services are central to the U.S. employment landscape, reflecting broader economic trends that prioritize these areas for growth and development. 
+
+3. Population and income(linear regression)
+
+Revenue could influence income by enabling higher wages and job growth. We aim to analyze at which stage revenue has the greatest impact and the reasons behind this.
 
 ```{r}
 data2 <- readRDS(here::here("dataset/cleaned_data_N_revenue_combined.rds"))
@@ -195,75 +160,90 @@ ggplot(df) +
   geom_smooth(aes(x = revenue, y = income), color = "blue", linetype = "dashed",
               method = "loess", formula = y ~ x)
 
-# So this part is basically another story. This is a plot of the revenue VS
-# income. It's pretty obvious there's a relation between them.
+
 ```
+This image shows the relationship between revenue and income. The red line shows a positive relationship between revenue and income overall. This suggests that as revenue increases, income tends to rise as well. The blue curve shows a nonlinear relationship between revenue and income, which can infer that first, at low revenue, income increases quickly. Secondly, at higher revenue, income growth slows and eventually flattens or slightly decreases.
+We can conclude that at the lower end of revenue, employment may increase income because businesses are growing, creating jobs, and offering higher wages. Besides, as revenue grows larger, income growth slows, potential because companies focus on efficiency rather than hiring and fewer additional employees are needed as revenue grows.
+
+
+4. Sex and employment
+
+In society, there are certain gender barriers, and different types of employment may exhibit preferences or inequalities toward specific genders.
 
 ```{r}
-df <- temp |>  
-  filter(
-    NAICS2017_LABEL == "Total for all sectors",
-    ETH_GROUP_LABEL == "Total",
-    SEX_LABEL %in% c("Male", "Female"),
-    VET_GROUP_LABEL == "Total"
+filtered_data <- data[data$SEX_LABEL != "Total" & data$NAICS2017_LABEL != "Total for all sectors", ]
+top_industries <- filtered_data |>
+  count(NAICS2017_LABEL, sort = TRUE) |>
+  top_n(10, n) |>
+  pull(NAICS2017_LABEL)
+
+top_filtered_data <- filtered_data|>
+  filter(NAICS2017_LABEL %in% top_industries)
+
+ggplot(top_filtered_data, aes(x = factor(SEX_LABEL), y = EMP, fill = NAICS2017_LABEL)) +
+  geom_bar(stat = "identity", position = "dodge") +
+  theme_minimal() +
+  labs(
+    title = "Employment by Sex and Top 10 Industry Types",
+    x = "Sex Group",
+    y = "Employment (EMP)",
+    fill = "Industry Types"
+  ) +
+  theme(
+    axis.text.x = element_text(angle = 45, hjust = 1),
+    legend.position = "bottom",
+    legend.text = element_text(size = 8) 
+  ) +
+  guides(
+    fill = guide_legend(ncol = 2) 
+  ) +
+  scale_y_continuous(labels = scales::comma)
+```
+In this bar chart, male employment significantly exceeds female employment, especially for the industries like: construction, transportation and warehousing, and manufacturing. These industries traditionally employ a higher percentage of males due to the nature of the work like manual labor.
+The dominance in the female employment industry are health care and social assistance, administrative and support services, which are often aligned with traditional roles associated with women.
+
+
+Inequality in employment resources between men and women may also imply inequality in average wages.
+
+
+```{r}
+library(dplyr)
+library(ggplot2)
+
+
+wage_analysis <- data |>
+  filter(SEX_LABEL != "Total" & NAICS2017_LABEL != "Total for all sectors") |>
+  group_by(NAICS2017_LABEL, SEX_LABEL) |>
+  summarise(
+    Total_Employment = sum(EMP, na.rm = TRUE),
+    Total_Payroll = sum(PAYANN, na.rm = TRUE),
+    Average_Wage = Total_Payroll / Total_Employment
+  ) |>
+  arrange(desc(Average_Wage))
+
+
+ggplot(wage_analysis, aes(x = NAICS2017_LABEL, y = Average_Wage, fill = SEX_LABEL)) +
+  geom_bar(stat = "identity", position = "dodge") +
+  coord_flip() +
+  theme_minimal() +
+  labs(
+    title = "Average Wage by Gender and Industry",
+    x = "Industry",
+    y = "Average Wage (Annual Payroll per Employee)",
+    fill = "Gender"
+  ) +
+  theme(
+    axis.text.y = element_text(size = 8), 
+    legend.position = "bottom"
   )
 
-ml <- lm(revenue ~ Population + SEX_LABEL, df)
-summary(ml)
-# Basically the same thing but on average revenue instead of 
-# income. All are pretty significant which is good, in a way that
-# it proves the point
 ```
 
-```{r}
-ggplot(df) +
-  geom_point(aes(y = revenue, x = Population)) +
-  geom_smooth(aes(y = revenue, x = Population), 
-              method = "lm") +
-  ylab("Income / $")
+The chart illustrates the average wage by gender across various industries, which shows that male employees earn higher average wages overall, especially for some high-paying industries such as utilities, information, finance and insurance, showcasing gender inequality in wage distribution within these fields. In some low-wage industries like accommodation and food services, agriculture, forestry, fishing and hunting, females earn more. These patterns emphasize systemic wage disparities tied to both gender and industry type, suggesting unequal access to high-paying roles and industries for female employees.
 
-# same thing with that graph, just with revenue.
-# I guess it does say that minority races are also getting
-# less revenue, which can be partially seen as less income and less revenue is 
-# associated. 
-# I don't think we need to go that deep like the previous income one,
-# but it's just something fun to have
-```
-## Note on Attribution
 
-In general, you should try to provide links to relevant resources, especially those that helped you. You don't have to link to every StackOverflow post you used but if there are explainers on aspects of the data or specific models that you found helpful, try to link to those. Also, try to link to other sources that might support (or refute) your analysis. These can just be regular hyperlinks. You don't need a formal citation.
+##Limitation: 
 
-If you are directly quoting from a source, please make that clear. You can show quotes using `>` like this
+1. Causation vs. Correlation
 
-```         
-> To be or not to be.
-```
-
-> To be or not to be.
-
-------------------------------------------------------------------------
-
-## Rubric: On this page
-
-You will
-
--   Introduce what motivates your Data Analysis (DA)
-    -   Which variables and relationships are you most interested in?
-    -   What questions are you interested in answering?
-    -   Provide context for the rest of the page. This will include figures/tables that illustrate aspects of the data of your question.
--   Modeling and Inference
-    -   The page will include some kind of formal statistical model. This could be a linear regression, logistic regression, or another modeling framework.
-    -   Explain the ideas and techniques you used to choose the predictors for your model. (Think about including interaction terms and other transformations of your variables.)
-    -   Describe the results of your modelling and make sure to give a sense of the uncertainty in your estimates and conclusions.
--   Explain the flaws and limitations of your analysis
-    -   Are there some assumptions that you needed to make that might not hold? Is there other data that would help to answer your questions?
--   Clarity Figures
-    -   Are your figures/tables/results easy to read, informative, without problems like overplotting, hard-to-read labels, etc?
-    -   Each figure should provide a key insight. Too many figures or other data summaries can detract from this. (While not a hard limit, around 5 total figures is probably a good target.)
-    -   Default `lm` output and plots are typically not acceptable.
--   Clarity of Explanations
-    -   How well do you explain each figure/result?
-    -   Do you provide interpretations that suggest further analysis or explanations for observed phenomenon?
--   Organization and cleanliness.
-    -   Make sure to remove excessive warnings, hide most or all code, organize with sections or multiple pages, use bullets, etc.
-    -   This page should be self-contained, i.e. provide a description of the relevant data.
+In the analysis, we may not find the causation and correlation. For example, in our third theme, we analyze the relationship between revenue and income. This observation may not imply causation. External factors such as market conditions, industry regulations, or economic trends could influence both revenue and income. 

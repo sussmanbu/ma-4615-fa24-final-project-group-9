@@ -278,3 +278,8 @@ disparities tied to both gender and industry type, suggesting unequal access to 
 In the analysis, we may not find the causation and correlation. For example, in our third theme, we analyze the relationship between revenue and income. This 
 observation may not imply causation. External factors such as market conditions, industry regulations, or economic trends could influence both revenue and 
 income. 
+
+2.Assumption of data completeness and accuracy:
+
+The analysis assumes the data is complete, accurate, and representative of the broader workforce. Incomplete or biased data, such as underreporting of wages or 
+employment in informal sectors or some specific industries that have a significant gap between 2017-2021 and other years, could skew results.

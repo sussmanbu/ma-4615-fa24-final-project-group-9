@@ -49,6 +49,7 @@ temp <- data |>
   )
 ml <- lm(average_income ~ Population + SEX_LABEL, temp)
 summary(ml)
+```
 
 To better understand the factors that influence employment, we used a linear regression model. This model helps us see how different 
 variables (or predictors) are related to employment and whether they have a positive or negative impact. To visualize the relationships

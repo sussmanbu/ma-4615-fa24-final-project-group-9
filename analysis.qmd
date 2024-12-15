@@ -29,7 +29,7 @@ from known trends. Below is an initial visualization showing the distribution of
 potential data inconsistencies or biases.
 
 
-
+## Modeling and Inference
 
 ```{r}
 library(tidyverse)
@@ -48,20 +48,10 @@ temp <- data |>
   )
 ml <- lm(average_income ~ Population + SEX_LABEL, temp)
 summary(ml)
-# VETERAN Group is also checked in the model, 
-# but didn't show enough significance to be considered
-# On the other hand, it makes it fair to say 
-# They are not getting the care they deserve.
-# Since the other variables are non-relevant to the topic
-# They are either partially ignored or just kept
-# to add some diversity to the data.
 
-# From the summary, both coefficient are positive and significant
-# which means the people who belong to a more major race
-# have a higher chance to get a better income
-# as well as that for male.
-# The plot below basically says the same thing.
-```
+To better understand the factors that influence employment, we used a linear regression model. This model helps us see how different variables (or predictors) are related to employment and whether they have a positive or negative impact. To visualize the relationships and patterns in the data, we used ggplot. 
+Through these plots, the trend, such as how employment rates change across different income groups or industries. The uncertainty in this analysis can be calculated by looking at the confidence intervals for predictors and p-values to assess how reliable the results are. The results of the model indicated that both race and gender coefficients were positive, suggesting that white people, as well as males, are more likely to achieve higher income levels.
+
 
 
 ## Analysis

@@ -53,15 +53,20 @@ potential data inconsistencies or biases.
 
 ## Introduction
 
-The job market in the United States has become increasingly competitive in recent years. Various economic, social, and technological factors contribute to this complexity, ranging from automation and globalization to shifts in labor demand across industries. 
+The job market in the United States has become increasingly competitive in recent years. Various economic, social, and technological 
+factors contribute to this complexity, ranging from automation and globalization to shifts in labor demand across industries. 
 
-To better understand the underlying causes of this phenomenon, an analysis of employment trends in the U.S need to be conducted, using data from the United States Census Bureau and the National Center for Science and Engineering Statistics (NCSES). Specifically, the analysis focus on employment patterns between 2017 and 2021 to identify the factors influencing job availability and workforce participation. This study aims to shed light on the relationship between race, types of employment, income and employment, and how they collectively shape the U.S. labor market.
+To better understand the underlying causes of this phenomenon, an analysis of employment trends in the U.S need to be conducted, using data from the United 
+States Census Bureau and the National Center for Science and Engineering Statistics (NCSES). Specifically, the analysis focus on employment patterns between 2017 
+and 2021 to identify the factors influencing job availability and workforce participation. This study aims to shed light on the relationship between race, types 
+of employment, income and employment, and how they collectively shape the U.S. labor market.
 
 ## Analysis
 
 1. Race and employment
 
-One of the issues in the analysis of employment data is the disparity between different racial groups, reflecting structural inequality in the labor market. 
+One of the issues in the analysis of employment data is the disparity between different racial groups, 
+reflecting structural inequality in the labor market. 
 
 ```{r analysis1}
 # Employment trends by race
@@ -82,9 +87,13 @@ data2 %>%
         legend.text = element_text(size = 8),
         panel.grid.minor = element_blank())
 ```
-The line graph shows the average number of employees across racial categories from 2017 to 2021, excluding “Total”, “Unclassifiable”, and “Classifiable” categories. The line for the “White” population (nonminority) consistently shows the highest average employment numbers. While other racial groups like “Asian”, “Black or African American” have comparatively lower and more consistent employment averages over the years. 
+The line graph shows the average number of employees across racial categories from 2017 to 2021, excluding “Total”, “Unclassifiable”, and “Classifiable” 
+categories. The line for the “White” population (nonminority) consistently shows the highest average employment numbers. While other racial groups like “Asian”, 
+“Black or African American” have comparatively lower and more consistent employment averages over the years. 
 
-In 2018, almost all races had the largest increase in average employment, especially for the “White” category. Based on the background information, we can infer that the reason might be attributed to the strong economic growth in the U.S., which increased job availability. This likely benefited the largest demographic group (“White”) more due to the pre-existing economic advantages.
+In 2018, almost all races had the largest increase in average employment, especially for the “White” category. Based on the background information, we can infer 
+that the reason might be attributed to the strong economic growth in the U.S., which increased job availability. This likely benefited the largest demographic 
+group (“White”) more due to the pre-existing economic advantages.
 
 ```{r}
 data |>
@@ -103,9 +112,15 @@ data |>
        linetype = "Years in business") +
   ylab("Average income / $")
 ```
-This graph shows the impact of race and years in business on average income levels from 2017 to 2021. Same as the previous analysis, "Nonminority" firms consistently earn higher incomes compared to "Minority" and "Equally minority/nonminority" firms, with long-established businesses (16+ years) outperforming newer firms across all categories. The year 2019 saw a sharp income spike, particularly for younger firms. We can infer the potential reason that policies such as Small Business Administration (SBA) loans, streamlined regulatory processes, increased federal procurement opportunities, and entrepreneurship promotion programs created a supportive environment for younger firms to thrive and achieve higher average incomes. 
+This graph shows the impact of race and years in business on average income levels from 2017 to 2021. Same as the previous analysis, "Nonminority" firms 
+consistently earn higher incomes compared to "Minority" and "Equally minority/nonminority" firms, with long-established businesses (16+ years) outperforming 
+newer firms across all categories. The year 2019 saw a sharp income spike, particularly for younger firms. We can infer the potential reason that policies such 
+as Small Business Administration (SBA) loans, streamlined regulatory processes, increased federal procurement opportunities, and entrepreneurship promotion 
+programs created a supportive environment for younger firms to thrive and achieve higher average incomes. 
 
-However, in the graph, from 2019 to 2020, there is a big decrease, potential because the COVID-19 pandemic in 2020 caused a notable decline across all groups, disproportionately affecting minority-owned and younger businesses. By 2021, income levels began recovering, with established "Non Minority" firms recovering more quickly than others, underscoring systemic disparities in resilience and resource access. 
+However, in the graph, from 2019 to 2020, there is a big decrease, potential because the COVID-19 pandemic in 2020 caused a notable decline across all groups, 
+disproportionately affecting minority-owned and younger businesses. By 2021, income levels began recovering, with established "Non Minority" firms recovering 
+more quickly than others, underscoring systemic disparities in resilience and resource access. 
 
 
 2. Different kinds of employment
@@ -126,11 +141,15 @@ data |>
   xlab("Major industry for company") +
   ylab("Total amount of firms")
 ```
-The graph shows the distribution of job opportunities across various industries based on the number of firms. It demonstrates that industries like professional, scientific, and technical services dominate the job market in terms of the number of firms, indicating their pivotal role in the economy. This suggests that sectors driven by knowledge, innovation, and essential services are central to the U.S. employment landscape, reflecting broader economic trends that prioritize these areas for growth and development. 
+The graph shows the distribution of job opportunities across various industries based on the number of firms. It demonstrates that industries like professional, 
+scientific, and technical services dominate the job market in terms of the number of firms, indicating their pivotal role in the economy. This suggests that 
+sectors driven by knowledge, innovation, and essential services are central to the U.S. employment landscape, reflecting broader economic trends that prioritize 
+these areas for growth and development. 
 
 3. Population and income(linear regression)
 
-Revenue could influence income by enabling higher wages and job growth. We aim to analyze at which stage revenue has the greatest impact and the reasons behind this.
+Revenue could influence income by enabling higher wages and job growth. It can be analyzed at which stage revenue has the greatest impact and the reasons behind 
+this.
 
 ```{r}
 data2 <- readRDS(here::here("dataset/cleaned_data_N_revenue_combined.rds"))
@@ -162,8 +181,13 @@ ggplot(df) +
 
 
 ```
-This image shows the relationship between revenue and income. The red line shows a positive relationship between revenue and income overall. This suggests that as revenue increases, income tends to rise as well. The blue curve shows a nonlinear relationship between revenue and income, which can infer that first, at low revenue, income increases quickly. Secondly, at higher revenue, income growth slows and eventually flattens or slightly decreases.
-We can conclude that at the lower end of revenue, employment may increase income because businesses are growing, creating jobs, and offering higher wages. Besides, as revenue grows larger, income growth slows, potential because companies focus on efficiency rather than hiring and fewer additional employees are needed as revenue grows.
+This image shows the relationship between revenue and income. The red line shows a positive relationship between revenue and income overall. This suggests that 
+as revenue increases, income tends to rise as well. The blue curve shows a nonlinear relationship between revenue and income, which can infer that first, at low 
+revenue, income increases quickly. Secondly, at higher revenue, income growth slows and eventually flattens or slightly decreases.
+
+In conclusion, at the lower end of revenue, employment may increase income because businesses are growing, creating jobs, and offering higher wages. Besides, as 
+revenue grows larger, income growth slows, potential because companies focus on efficiency rather than hiring and fewer additional employees are needed as 
+revenue grows.
 
 
 4. Sex and employment
@@ -199,8 +223,10 @@ ggplot(top_filtered_data, aes(x = factor(SEX_LABEL), y = EMP, fill = NAICS2017_L
   ) +
   scale_y_continuous(labels = scales::comma)
 ```
-In this bar chart, male employment significantly exceeds female employment, especially for the industries like: construction, transportation and warehousing, and manufacturing. These industries traditionally employ a higher percentage of males due to the nature of the work like manual labor.
-The dominance in the female employment industry are health care and social assistance, administrative and support services, which are often aligned with traditional roles associated with women.
+In this bar chart, male employment significantly exceeds female employment, especially for the industries like: construction, transportation and warehousing, and 
+manufacturing. These industries traditionally employ a higher percentage of males due to the nature of the work like manual labor.
+The dominance in the female employment industry are health care and social assistance, administrative and support services, which are often aligned with 
+traditional roles associated with women.
 
 
 Inequality in employment resources between men and women may also imply inequality in average wages.
@@ -239,11 +265,16 @@ ggplot(wage_analysis, aes(x = NAICS2017_LABEL, y = Average_Wage, fill = SEX_LABE
 
 ```
 
-The chart illustrates the average wage by gender across various industries, which shows that male employees earn higher average wages overall, especially for some high-paying industries such as utilities, information, finance and insurance, showcasing gender inequality in wage distribution within these fields. In some low-wage industries like accommodation and food services, agriculture, forestry, fishing and hunting, females earn more. These patterns emphasize systemic wage disparities tied to both gender and industry type, suggesting unequal access to high-paying roles and industries for female employees.
+The chart illustrates the average wage by gender across various industries, which shows that male employees earn higher average wages overall, especially for 
+some high-paying industries such as utilities, information, finance and insurance, showcasing gender inequality in wage distribution within these fields. In some 
+low-wage industries like accommodation and food services, agriculture, forestry, fishing and hunting, females earn more. These patterns emphasize systemic wage 
+disparities tied to both gender and industry type, suggesting unequal access to high-paying roles and industries for female employees.
 
 
 ##Limitation: 
 
 1. Causation vs. Correlation
 
-In the analysis, we may not find the causation and correlation. For example, in our third theme, we analyze the relationship between revenue and income. This observation may not imply causation. External factors such as market conditions, industry regulations, or economic trends could influence both revenue and income. 
+In the analysis, we may not find the causation and correlation. For example, in our third theme, we analyze the relationship between revenue and income. This 
+observation may not imply causation. External factors such as market conditions, industry regulations, or economic trends could influence both revenue and 
+income. 

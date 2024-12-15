@@ -13,9 +13,9 @@ filters:
 
 ![](images/The_Big_Picture_2.jpeg)
 
-This comes from the file `big_picture.Rmd`.
+# Uncovering Bias: Diving into the makeup of American businesses
 
-Think of this page as your 538/Upshot style article. This means that you should try to tell a story through the data and your analysis. Read articles from those sites and similar sites to get a feeling for what they are like. Try to write in the style of a news or popular article. Importantly, this page should be geared towards the general public. You shouldn't assume the reader understands how to interpret a linear regression or a complicated plot. Focus on interpretation and visualizations.
+The United States is well known for having a diverse, efficient, and opportunistic economic industry. Due to this, the US economy has thrived for the past few decades resulting in political and cultural power over other countries and stability for it's citizens. Despite this economic growth however, many still question if there is equal opportunity for all kinds of employees based on race, gender, and industry type. Our investigation of the relationship between US census demographics and industry types/economic trends calls attention to if there is inequality for minority groups in the US job industry. 
 
 ```{r, echo = FALSE, warning = FALSE, message = FALSE}
 # just code for packages and data.
@@ -44,6 +44,9 @@ ggplot(temp) +
   xlab("Gender") +
   ggtitle("The difference in average income for male and female in 2021")
 ```
+# The Basics: Male vs Female
+
+To begin, let's look at the difference in Male and Female average income in 2021. The figure above illustrates both male and female average income in USD. The results show a sizable difference between the two variables with men earning several thousands more than women. 
 
 ```{r, echo = FALSE}
 # plot for income across races
@@ -72,6 +75,9 @@ ggplot(temp) +
     axis.title.x = element_text(vjust = -1)
   )
 ```
+# Income Differences in Race
+
+The next graph illustrates the differences in income based on race. Using various different races such as White, Native Hawaiian and Other Pacific Islander, Asian, American Indian and Alaska Native, and Black or African American, we are able to see clear discrepancies in the average income based on race in 2021. We are able to see that the White group is earning more than 50,000 dollars and more than 10,000 dollars more than the Black or African American group which is the lowest. These results raise questions on whether the US job industry provides equal earning opportunity to all Americans regardless of their race. 
 
 ```{r, echo = FALSE}
 # plot for employees in different industries
@@ -105,6 +111,9 @@ ggplot(temp, aes(x = "", y = per, fill = NAICS2017_LABEL)) +
   )
   
 ```
+# What Jobs Are Biggest?
+
+To help provide more information to further investigate the US job industry, we will next look at the population differences for each industry. The pie chart above shows that the "Other" industry has the highest employment while industries such as "Retail trade" and "Health care and social assistance" are the next biggest. This information tells what kinds of jobs US employees are working and can help explain income information. 
 
 ```{r, echo = FALSE}
 # plot for a trend between firm revenue and income for employees
@@ -129,59 +138,14 @@ ggplot(df) +
   
 
 ```
+# Equality From Top To Bottom?
 
----
+Recently there has been major discussions on income for employees relative to how much corporations are making. The graph above shows that corporations do provide slight increases towards employees' salaries, however, the same corporations are making large increases in their profits. Most income for employees somewhat plateaus in the 80,000 dollar range and salaries only slightly increase to just under 90,000 dollars. 
 
+# Conclusion
 
-### Interactive
+Using the information we have gathered from both data sources and creating the various graphs, we have uncovered that there are still problems in the US economy regarding issues on income equality. We were able to highlight issues on race, gender, and general industry information and found that certain groups such as women and African Americans still lag behind in our job industry. 
 
-You will also be required to make an interactive dashboard like [this one](/flex/flex.html).
-
-Your Big Data page should also include a small interactive dashboard. The dashboard should be created either using Shinylive, as below. This interactive component should in some way support your thesis from your big picture page. Good interactives often provide both high-level understanding of the data while allowing a user to investigate specific scenarios, observations, subgroups, etc.
-
-
----
-
-## Rubric: On this page
-
-You will
-
-* Title
-  * Your big picture page should have a creative/click-bait-y title/headline that provides a hint about your thesis.
-* Clarity of Explanation
-  * You should have a clear thesis/goal for this page. What are you trying to show? Make sure that you explain your analysis in detail but don't go into top much mathematics or statistics. The audience for this page is the general public (to the extent possible). Your thesis should be a statement, not a question.
-  * Each figure should be very polished and also not too complicated. There should be a clear interpretation of the figure so the figure has a clear purpose. Even something like a histogram can be difficult to interpret for non-experts.
-* Creativity
-  * Do your best to make things interesting. Think of a story. Think of how each part of your analysis supports the previous part or provides a different perspective.
-* Interactive component
-  * Quality and ease of use of the interactive components.
-Is it clear what can be explored using your interactive components?
-Does it enhance and reinforce your conclusions?
-* This page should be self-contained.
-  
-**Note**: This page should have no code visible, i.e. use `#| echo: FALSE`.  
+Reflecting on these results, it becomes more aware that more needs to be done to provide equal opportunities to American families concerning their income earning opportunities. US corporations are still increasing their revenues, however, there are still discrepancies in the "sharing" of this wealth. 
 
 
-
-
-## Rubric: Other components
-
-### Video Recording
-
-Make a video recording (probably using Zoom) demonstrating your interactive components.
-You should provide a quick explanation of your data and demonstrate some of the conclusions from your EDA.
-This video should be no longer than 4 minutes.
-Include a link to your video (and password if needed) in your README.md file on your Github repository. You are not required to provide a link on the website.
-This can be presented by any subset of the team members.
-
-
-### Rest of the Site
-
-Finally, here are important things to keep in mind for the rest of the site. 
-
-The main title of your page is informative.
-Each post has an author/description/informative title.
-All lab required posts are present.
-Each page (including the home page) has a nice featured image associated with it.
-Your about page is up to date and clean.
-You have removed the generic posts from the initial site template.

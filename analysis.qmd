@@ -7,6 +7,8 @@ draft: false
 
 ![](https://upload.wikimedia.org/wikipedia/commons/7/77/Pebbleswithquarzite.jpg)
 
+# The factors of affecting employment: A comprehensive analysis of race, job type, income and sex
+
 ## Introduction
 
 The U.S. job market has changed a lot in recent years because of new technology, the effects of globalization, and the needs of different industries. These changes have made it harder for people to compete for jobs, and many workers, researchers, and policymakers are trying to figure out what’s behind these shifts and how they impact job opportunities and participation in the workforce.
@@ -17,7 +19,6 @@ How does the kind of job someone has relate to their income level?
 Are there big differences in who participates in the workforce across various groups, and what might be the reasons for these gaps?
 The analysis will conduct a model and use charts and tables to make these ideas clearer, showing trends and differences in jobs and income. By breaking this down, the goal is to understand the social and economic factors that shape today’s U.S. job market in a way that’s easy to grasp.
 
-# The factors of affecting employment: A comprehensive analysis of race, job type, income and sex
 
 **Date Cleaning**
 
@@ -49,8 +50,14 @@ temp <- data |>
 ml <- lm(average_income ~ Population + SEX_LABEL, temp)
 summary(ml)
 
-To better understand the factors that influence employment, we used a linear regression model. This model helps us see how different variables (or predictors) are related to employment and whether they have a positive or negative impact. To visualize the relationships and patterns in the data, we used ggplot. 
-Through these plots, the trend, such as how employment rates change across different income groups or industries. The uncertainty in this analysis can be calculated by looking at the confidence intervals for predictors and p-values to assess how reliable the results are. The results of the model indicated that both race and gender coefficients were positive, suggesting that white people, as well as males, are more likely to achieve higher income levels.
+To better understand the factors that influence employment, we used a linear regression model. This model helps us see how different 
+variables (or predictors) are related to employment and whether they have a positive or negative impact. To visualize the relationships
+and patterns in the data, we used ggplot. 
+
+Through these plots, the trend, such as how employment rates change across different income groups or industries. The uncertainty in 
+this analysis can be calculated by looking at the confidence intervals for predictors and p-values to assess how reliable the results 
+are. The results of the model indicated that both race and gender coefficients were positive, suggesting that white people, as well as 
+males, are more likely to achieve higher income levels.
 
 
 

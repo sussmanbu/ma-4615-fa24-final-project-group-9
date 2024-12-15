@@ -49,7 +49,7 @@ potential data inconsistencies or biases.
 
 
 
-**The factors of affecting employment: A comprehensive analysis of race, job type, income and sex**
+#The factors of affecting employment: A comprehensive analysis of race, job type, income and sex
 
 ## Introduction
 
@@ -114,8 +114,8 @@ data |>
 ```
 This graph shows the impact of race and years in business on average income levels from 2017 to 2021. Same as the previous analysis, "Nonminority" firms 
 consistently earn higher incomes compared to "Minority" and "Equally minority/nonminority" firms, with long-established businesses (16+ years) outperforming 
-newer firms across all categories. The year 2019 saw a sharp income spike, particularly for younger firms. We can infer the potential reason that policies such 
-as Small Business Administration (SBA) loans, streamlined regulatory processes, increased federal procurement opportunities, and entrepreneurship promotion 
+newer firms across all categories. The year 2019 saw a sharp income spike, particularly for younger firms, which suggest that the potential reason that policies
+such as Small Business Administration (SBA) loans, streamlined regulatory processes, increased federal procurement opportunities, and entrepreneurship promotion 
 programs created a supportive environment for younger firms to thrive and achieve higher average incomes. 
 
 However, in the graph, from 2019 to 2020, there is a big decrease, potential because the COVID-19 pandemic in 2020 caused a notable decline across all groups, 

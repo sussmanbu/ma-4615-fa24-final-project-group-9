@@ -276,9 +276,9 @@ disparities tied to both gender and industry type, suggesting unequal access to 
 
 1. Causation vs. Correlation
 
-In the analysis, we may not find the causation and correlation. For example, in our third theme, we analyze the relationship between revenue and income. This 
-observation may not imply causation. External factors such as market conditions, industry regulations, or economic trends could influence both revenue and 
-income. 
+In the analysis, causation and correlation may not be identified. For example, in the third theme, the relationship between revenue and
+income is analyzed. This observation may not imply causation. External factors such as market conditions, industry regulations, or
+economic trends could influence both revenue and income.
 
 2.Assumption of data completeness and accuracy:
 

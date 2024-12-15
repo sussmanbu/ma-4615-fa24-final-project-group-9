@@ -49,7 +49,7 @@ potential data inconsistencies or biases.
 
 
 
-#The factors of affecting employment: A comprehensive analysis of race, job type, income and sex
+# The factors of affecting employment: A comprehensive analysis of race, job type, income and sex
 
 ## Introduction
 

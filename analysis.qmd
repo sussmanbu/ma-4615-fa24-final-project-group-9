@@ -68,7 +68,7 @@ of employment, income and employment, and how they collectively shape the U.S. l
 One of the issues in the analysis of employment data is the disparity between different racial groups, 
 reflecting structural inequality in the labor market. 
 
-```{r analysis1}
+```{r}
 # Employment trends by race
 data2 %>%
   filter(!RACE_GROUP_LABEL %in% c("Total", "Unclassifiable", "Classifiable")) %>%

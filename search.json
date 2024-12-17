@@ -143,8 +143,8 @@
     "objectID": "data.html#variables",
     "href": "data.html#variables",
     "title": "Data",
-    "section": "variables:",
-    "text": "variables:\n\nGEO_ID: Geographic identifier code\n\n\nNAME: Geographic Area Name\n\n\nNAICS2017: 2017 NAICS code\n\n\nNAICS2017_LABEL: Meaning of NAICS Code\n\n\nSEX: Sex code\n\n\nSEX_LABEL: Meaning of Sex code\n\n\nETH_GROUP: Ethnicity code\n\n\nETH_GROUP_LABEL: Meaning of Ethnicity code\n\n\nRACE_GROUP: Race code\n\n\nRACE_GROUP_LABEL: Meaning of Race code\n\n\nVET_GROUP: Veteran code\n\n\nVET_GROUP_LABEL: Meaning of Veteran code\n\n\nYIBSZFI: Years in business code\n\n\nYIBSZFI_LABEL: Meaning of Years in business code\n\n\nYEAR: year\n\n\nFIRMPDEMP: Number of employer firms\n\n\nRCPPDEMP: Sales, value of shipments, or revenue of employer firms ($1,000)\n\n\nEMP: Number of employees\n\n\nPAYANN: Annual payroll ($1,000)\n\n\nFIRMPDEMP_S: Relative standard error of employer firms (%)\n\n\nRCPPDEMP_S: Relative standard error of sales, value of shipments, or revenue of employer firms (%)\n\n\nEMP_S: Relative standard error of number of employees (%)\nPAYANN_S: Relative standard error of annual payroll (%)\n**load_and_clean_data.R file https://github.com/sussmanbu/ma-4615-fa24-final-project-group-9/blame/main/dataset/cleaned_data_N_revenue_combined.rds\ncleaning script"
+    "section": "Variables:",
+    "text": "Variables:\n\nGEO_ID: Geographic identifier code\n\n\nNAME: Geographic Area Name\n\n\nNAICS2017: 2017 NAICS code\n\n\nNAICS2017_LABEL: Meaning of NAICS Code\n\n\nSEX: Sex code\n\n\nSEX_LABEL: Meaning of Sex code\n\n\nETH_GROUP: Ethnicity code\n\n\nETH_GROUP_LABEL: Meaning of Ethnicity code\n\n\nRACE_GROUP: Race code\n\n\nRACE_GROUP_LABEL: Meaning of Race code\n\n\nVET_GROUP: Veteran code\n\n\nVET_GROUP_LABEL: Meaning of Veteran code\n\n\nYIBSZFI: Years in business code\n\n\nYIBSZFI_LABEL: Meaning of Years in business code\n\n\nYEAR: year\n\n\nFIRMPDEMP: Number of employer firms\n\n\nRCPPDEMP: Sales, value of shipments, or revenue of employer firms ($1,000)\n\n\nEMP: Number of employees\n\n\nPAYANN: Annual payroll ($1,000)\n\n\nFIRMPDEMP_S: Relative standard error of employer firms (%)\n\n\nRCPPDEMP_S: Relative standard error of sales, value of shipments, or revenue of employer firms (%)\n\n\nEMP_S: Relative standard error of number of employees (%)\n#####PAYANN_S: Relative standard error of annual payroll (%)\n**load_and_clean_data.R file https://github.com/sussmanbu/ma-4615-fa24-final-project-group-9/blame/main/dataset/cleaned_data_N_revenue_combined.rds"
   },
   {
     "objectID": "data.html#data-background",
@@ -158,7 +158,7 @@
     "href": "data.html#date-cleaning",
     "title": "Data",
     "section": "Date Cleaning:",
-    "text": "Date Cleaning:\nFor our initial data cleaning, we started by selecting a subset of the data that contains key demographic and business characteristics, focusing on columns with minimal missing values to ensure a more reliable analysis. We first removed rows with significant missing data to avoid skewing our results but kept those with minor gaps for further inspection. As part of exploratory data analysis (EDA), we checked for unusual patterns, such as outliers, unexpectedly frequent or infrequent values, and relationships that align with or deviate from known trends. Below is an initial visualization showing the distribution of businesses by owner race and industry, helping us spot potential data inconsistencies or biases."
+    "text": "Date Cleaning:\nFor our initial data cleaning, we started by selecting a subset of the data that contains key demographic and business characteristics, focusing on columns with minimal missing values to ensure a more reliable analysis. We first removed rows with significant missing data to avoid skewing our results but kept those with minor gaps for further inspection. As part of exploratory data analysis (EDA), we checked for unusual patterns, such as outliers, unexpectedly frequent or infrequent values, and relationships that align with or deviate from known trends. Below is an initial visualization showing the distribution of businesses by owner race and industry, helping us spot potential data inconsistencies or biases.\nWe didn’t change any variable names since they are pretty clear already.\ncleaning script"
   },
   {
     "objectID": "data.html#data-equity",
@@ -166,6 +166,13 @@
     "title": "Data",
     "section": "Data Equity:",
     "text": "Data Equity:\nThe first principle, justice, means treating everyone in our data fairly. If we’re analyzing factors like race, gender, or income, we need to make sure our data collection and analysis don’t favor one group over another. This ensures that all groups are represented equally, and the findings don’t carry any unfair bias. The second principle, respect for persons, focuses on people’s right to make their own choices. This means giving people the information they need to understand the data and allowing them the freedom to act on it. If someone has limits, like age, a disability, or difficulty with language, they deserve extra support to understand and participate fully in the process.\nTransparency is key, but our analysis might have limitations. While the data from the U.S. Census Bureau and NCSES is comprehensive and diverse, it only covers 2017- 2021, potentially missing recent trends. Though the dataset aims to be representative, some subgroups may still be underrepresented. Acknowledging these limitations ensures responsible use and accurate insights into business growth, diversity, and resource needs."
+  },
+  {
+    "objectID": "data.html#data-combining",
+    "href": "data.html#data-combining",
+    "title": "Data",
+    "section": "Data combining:",
+    "text": "Data combining:\nOur group decided to combine our original data (employment trends) with US census data, which has the population of each race and sex for each year. There were no major issues getting the census data; however, it did take a bit of time to combine all the years we wanted to examine into one final dataset. When the data was finally combined, we created a facet-wrapped graph that was grouped by race and filtered by sex. The facet-wrap was done by race as well. Using this graph, we can see the population by race and sex per year. There is a clear majority for the “White” population when combining the data and other racial groups such as, “Asian”, “Black”, and “Some Other Race” trail behind. The split between genders (Male and Female) is somewhat even in all racial groups.\ncombining script"
   },
   {
     "objectID": "index.html",

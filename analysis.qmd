@@ -11,12 +11,20 @@ draft: false
 
 ## Introduction
 
-The U.S. job market has changed a lot in recent years because of new technology, the effects of globalization, and the needs of different industries. These changes have made it harder for people to compete for jobs, and many workers, researchers, and policymakers are trying to figure out what’s behind these shifts and how they impact job opportunities and participation in the workforce.
-This study focuses on understanding the patterns of employment in the U.S., especially looking at how race, income, and job types interact to affect who gets jobs and how much they earn. To do this, analysis can be conducted with the data from the U.S. Census Bureau and the National Center for Science and Engineering Statistics (NCSES) to study job trends from 2017 to 2021.
+The U.S. job market has changed a lot in recent years because of new technology, the effects of globalization, and the needs of different industries. These 
+changes have made it harder for people to compete for jobs, and many workers, researchers, and policymakers are trying to figure out what’s behind these shifts 
+and how they impact job opportunities and participation in the workforce.
+
+This study focuses on understanding the patterns of employment in the U.S., especially looking at how race, income, and job types interact to affect who gets 
+jobs and how much they earn. To do this, analysis can be conducted with the data from the U.S. Census Bureau and the National Center for Science and Engineering 
+Statistics (NCSES) to study job trends from 2017 to 2021.
+
 The main questions include:
+
 Do job opportunities differ for people of different racial and ethnic backgrounds?
 How does the kind of job someone has relate to their income level?
 Are there big differences in who participates in the workforce across various groups, and what might be the reasons for these gaps?
+
 The analysis will conduct a model and use charts and tables to make these ideas clearer, showing trends and differences in jobs and income. By breaking this down, the goal is to understand the social and economic factors that shape today’s U.S. job market in a way that’s easy to grasp.
 
 

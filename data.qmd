@@ -8,94 +8,34 @@ draft: false
 ![](images/data-import-cheatsheet-thumbs.png)
 
 
-This comes from the file `data.qmd`.
+link: https://data.census.gov/table/ABSCB2021.AB2100CSCB02?t=Age%20of%20Business
 
-Your first steps in this project will be to find data to work on.
+The data was collected by the National Center for Science and Engineering Statistics (NCSES) in collaboration with the United States Census Bureau. The primary purpose of collecting this data was to provide comprehensive information about the characteristics of employees in metropolitan areas across various demographic dimensions, including sex, ethnicity, race, years in business, and veteran status. The intention behind this collection is to support research, inform policymakers, and offer valuable insights to the public.
 
-I recommend trying to find data that interests you and that you are knowledgeable about. A bad example would be if you have no interest in video games but your data set is about video games. I also recommend finding data that is related to current events, social justice, and other areas that have an impact.
+## variables:
 
-
-Initially, you will study _one dataset_ but later you will need to combine that data with another dataset. For this reason, I recommend finding data that has some date and/or location components. These types of data are conducive to interesting visualizations and analysis and you can also combine this data with other data that also has a date or location variable.
-Data from the census, weather data, economic data, are all relatively easy to combine with other data with time/location components.
-
-
-## What makes a good data set?
-
-* Data you are interested in and care about.
-* Data where there are a lot of potential questions that you can explore.
-* A data set that isn't completely cleaned already.
-* Multiple sources for data that you can combine.
-* Some type of time and/or location component.
-
-
-## Where to keep data?
-
-
-Below 50mb: In `dataset` folder
-
-Above 50mb: In `dataset_ignore` folder. This folder will be ignored by `git` so you'll have to manually sync these files across your team.
-
-### Sharing your data
-
-
-For small datasets (<50mb), you can use the `dataset` folder that is tracked by github. Add the files just like you would any other file.
-
-If you create a folder named `data` this will cause problems.
-
-For larger datasets, you'll need to create a new folder in the project root directory named `dataset-ignore`. This will be ignored by git (based off the `.gitignore` file in the project root directory) which will help you avoid issues with Github's size limits. Your team will have to manually make sure the data files in `dataset-ignore` are synced across team members.
-
-Your [load_and_clean_data.R](/scripts/load_and_clean_data.R) file is how you will load and clean your data. Here is a an example of a very simple one.
-
-```{r}
-#source(
-#  "scripts/load_and_clean_data.R",
-#  echo = FALSE # Use echo=FALSE or omit it to avoid code output  
-#)
-```
-You should never use absolute paths (eg. `/Users/danielsussman/path/to/project/` or `C:\MA415\\Final_Project\`).
-
-You might consider using the `here` function from the [`here` package](https://here.r-lib.org/articles/here.html) to avoid path problems.
-
-### Load and clean data script
-
-The idea behind this file is that someone coming to your website could largely replicate your analyses after running this script on the original data sets to clean them.
-This file might create a derivative data set that you then use for your subsequent analysis.
-Note that you don't need to run this script from every post/page.
-Instead, you can load in the results of this script, which could be plain text files or `.RData` files. In your data page you'll describe how these results were created. If you have a very large data set, you might save smaller data sets that you can use for exploration purposes.
-To link to this file, you can use `[cleaning script](/scripts/load_and_clean_data.R)` wich appears as [cleaning script](/scripts/load_and_clean_data.R). 
-
-----
-
-## Rubric: On this page
-
-**link: https://data.census.gov/table/ABSCB2021.AB2100CSCB02?t=Age%20of%20Business
-
-**The data was collected by the National Center for Science and Engineering Statistics (NCSES) in collaboration with the United States Census Bureau. The primary purpose of collecting this data was to provide comprehensive information about the characteristics of employees in metropolitan areas across various demographic dimensions, including sex, ethnicity, race, years in business, and veteran status. The intention behind this collection is to support research, inform policymakers, and offer valuable insights to the public.
-
-**variables:
-
-GEO_ID: Geographic identifier code
-NAME: Geographic Area Name
-NAICS2017: 2017 NAICS code
-NAICS2017_LABEL: Meaning of NAICS Code
-SEX: Sex code
-SEX_LABEL: Meaning of Sex code
-ETH_GROUP: Ethnicity code
-ETH_GROUP_LABEL: Meaning of Ethnicity code
-RACE_GROUP: Race code
-RACE_GROUP_LABEL: Meaning of Race code
-VET_GROUP: Veteran code
-VET_GROUP_LABEL: Meaning of Veteran code
-YIBSZFI: Years in business code
-YIBSZFI_LABEL: Meaning of Years in business code
-YEAR: year
-FIRMPDEMP: Number of employer firms
-RCPPDEMP: Sales, value of shipments, or revenue of employer firms ($1,000)
-EMP: Number of employees
-PAYANN: Annual payroll ($1,000)
-FIRMPDEMP_S: Relative standard error of employer firms (%)
-RCPPDEMP_S: Relative standard error of sales, value of shipments, or revenue of employer firms (%)
-EMP_S: Relative standard error of number of employees (%)
+##### GEO_ID: Geographic identifier code
+##### NAME: Geographic Area Name
+##### NAICS2017: 2017 NAICS code
+##### NAICS2017_LABEL: Meaning of NAICS Code
+##### SEX: Sex code
+##### SEX_LABEL: Meaning of Sex code
+##### ETH_GROUP: Ethnicity code
+##### ETH_GROUP_LABEL: Meaning of Ethnicity code
+##### RACE_GROUP: Race code
+##### RACE_GROUP_LABEL: Meaning of Race code
+##### VET_GROUP: Veteran code
+##### VET_GROUP_LABEL: Meaning of Veteran code
+##### YIBSZFI: Years in business code
+##### YIBSZFI_LABEL: Meaning of Years in business code
+##### YEAR: year
+##### FIRMPDEMP: Number of employer firms
+##### RCPPDEMP: Sales, value of shipments, or revenue of employer firms ($1,000)
+##### EMP: Number of employees
+##### PAYANN: Annual payroll ($1,000)
+##### FIRMPDEMP_S: Relative standard error of employer firms (%)
+##### RCPPDEMP_S: Relative standard error of sales, value of shipments, or revenue of employer firms (%)
+##### EMP_S: Relative standard error of number of employees (%)
 PAYANN_S: Relative standard error of annual payroll (%)
 
 **`load_and_clean_data.R` file
@@ -103,3 +43,46 @@ https://github.com/sussmanbu/ma-4615-fa24-final-project-group-9/blame/main/datas
 
 [cleaning script](/scripts/load_and_clean_data.R)
 
+## Data Background: 
+
+This data comes from the United States Census Bureau and the National Center for Science and Engineering Statistics (NCSES). The Nation Center for Science and 
+Engineering Statistics collected the data provided. This data was collected to provide information on the sex, ethnicity, race, industry, and veteran status of 
+employees in metro areas. More specifically, the data helps provide researchers, practitioners, policymakers, and the public with more information. We are partly 
+able to find the data from the original source. NCSES works with the United States Census Bureau as part of the federal government and we are able to find the 
+data from there. **
+
+After an overall review, this data is collected comprehensively and doesn't contain big issue. We can see if the sample is biased through if it only includes 
+certain groups. However, the population is representative of the broader community. For example, the data set includes loan applicants from broad regions, income 
+brackets, racial groups, sex and veteran. It is relatively fair data.**
+
+The data is often used to understand the characteristics of businesses in the U.S., such as their ownership (by sex, race, veteran status, etc.) and how long 
+they’ve been in operation. Researchers might use this data to explore trends in business growth, diversity in ownership, or the challenges certain groups face in 
+starting and sustaining businesses. Other research has used this data to study issues like disparities in business ownership across different demographic groups, 
+and it can also be used for policy decisions. For example, government programs supporting minority-owned businesses or veteran entrepreneurs might rely on this 
+data to tailor policies. **
+
+Questions include: 
+What factors contribute to business success? 
+Are certain groups underrepresented in business ownership? 
+What resources do different types of businesses need to grow?
+
+## Date Cleaning: 
+
+For our initial data cleaning, we started by selecting a subset of the data that contains key demographic and business characteristics, 
+focusing on columns with minimal missing values to ensure a more reliable analysis. We first removed rows with significant missing data
+to avoid skewing our results but kept those with minor gaps for further inspection. As part of exploratory data analysis (EDA), we 
+checked for unusual patterns, such as outliers, unexpectedly frequent or infrequent values, and relationships that align with or deviate
+from known trends. Below is an initial visualization showing the distribution of businesses by owner race and industry, helping us spot 
+potential data inconsistencies or biases.
+
+## Data Equity:
+
+The first principle, justice, means treating everyone in our data fairly. If we're analyzing factors like race, gender, or income, we need to make sure our data 
+collection and analysis don’t favor one group over another. This ensures that all groups are represented equally, and the findings don’t carry any unfair bias. The 
+second principle, respect for persons, focuses on people’s right to make their own choices. This means giving people the information they need to understand the 
+data and allowing them the freedom to act on it. If someone has limits, like age, a disability, or difficulty with language, they deserve extra support to 
+understand and participate fully in the process.
+
+Transparency is key, but our analysis might have limitations. While the data from the U.S. Census Bureau and NCSES is comprehensive and diverse, it only covers 2017-
+2021, potentially missing recent trends. Though the dataset aims to be representative, some subgroups may still be underrepresented. Acknowledging these limitations 
+ensures responsible use and accurate insights into business growth, diversity, and resource needs.

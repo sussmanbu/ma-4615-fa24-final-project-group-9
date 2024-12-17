@@ -268,7 +268,7 @@ low-wage industries like accommodation and food services, agriculture, forestry,
 disparities tied to both gender and industry type, suggesting unequal access to high-paying roles and industries for female employees.
 
 
-##Limitation: 
+## Limitation: 
 
 1. Causation vs. Correlation
 

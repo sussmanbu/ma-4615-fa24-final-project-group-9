@@ -8,11 +8,16 @@ draft: false
 ![](images/data-import-cheatsheet-thumbs.png)
 
 
-link: https://data.census.gov/table/ABSCB2021.AB2100CSCB02?t=Age%20of%20Business
+links: 
+https://data.census.gov/table/ABSCB2021.AB2100CSCB02?t=Age%20of%20Business
+https://data.census.gov/table/ABSCB2020.AB2000CSCB02?t=Age%20of%20Business
+https://data.census.gov/table/ABSCB2019.AB1900CSCB02?t=Age%20of%20Business
+https://data.census.gov/table/ABSCB2018.AB1800CSCB02?t=Age%20of%20Business
+https://data.census.gov/table/ABSCB2017.AB1700CSCB02?t=Age%20of%20Business
 
 The data was collected by the National Center for Science and Engineering Statistics (NCSES) in collaboration with the United States Census Bureau. The primary purpose of collecting this data was to provide comprehensive information about the characteristics of employees in metropolitan areas across various demographic dimensions, including sex, ethnicity, race, years in business, and veteran status. The intention behind this collection is to support research, inform policymakers, and offer valuable insights to the public.
 
-## variables:
+## Variables:
 
 ##### GEO_ID: Geographic identifier code
 ##### NAME: Geographic Area Name
@@ -36,7 +41,7 @@ The data was collected by the National Center for Science and Engineering Statis
 ##### FIRMPDEMP_S: Relative standard error of employer firms (%)
 ##### RCPPDEMP_S: Relative standard error of sales, value of shipments, or revenue of employer firms (%)
 ##### EMP_S: Relative standard error of number of employees (%)
-PAYANN_S: Relative standard error of annual payroll (%)
+#####PAYANN_S: Relative standard error of annual payroll (%)
 
 **`load_and_clean_data.R` file
 https://github.com/sussmanbu/ma-4615-fa24-final-project-group-9/blame/main/dataset/cleaned_data_N_revenue_combined.rds
@@ -45,9 +50,7 @@ https://github.com/sussmanbu/ma-4615-fa24-final-project-group-9/blame/main/datas
 
 ## Data Background: 
 
-This data comes from the United States Census Bureau and the National Center for Science and Engineering Statistics (NCSES). The Nation Center for Science and 
-Engineering Statistics collected the data provided. This data was collected to provide information on the sex, ethnicity, race, industry, and veteran status of 
-employees in metro areas. More specifically, the data helps provide researchers, practitioners, policymakers, and the public with more information. We are partly 
+This data comes from the United States Census Bureau and the National Center for Science and Engineering Statistics (NCSES), covering from 2017 to 2021. The Nation Center for Science and Engineering Statistics collected the data provided. This data was collected to provide information on the sex, ethnicity, race, industry, and veteran status of employees in metro areas. More specifically, the data helps provide researchers, practitioners, policymakers, and the public with more information. We are partly 
 able to find the data from the original source. NCSES works with the United States Census Bureau as part of the federal government and we are able to find the 
 data from there. **
 

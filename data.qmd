@@ -46,8 +46,6 @@ The data was collected by the National Center for Science and Engineering Statis
 **`load_and_clean_data.R` file
 https://github.com/sussmanbu/ma-4615-fa24-final-project-group-9/blame/main/dataset/cleaned_data_N_revenue_combined.rds
 
-[cleaning script](/scripts/load_and_clean_data.R)
-
 ## Data Background: 
 
 This data comes from the United States Census Bureau and the National Center for Science and Engineering Statistics (NCSES), covering from 2017 to 2021. The Nation Center for Science and Engineering Statistics collected the data provided. This data was collected to provide information on the sex, ethnicity, race, industry, and veteran status of employees in metro areas. More specifically, the data helps provide researchers, practitioners, policymakers, and the public with more information. We are partly 
@@ -78,6 +76,10 @@ checked for unusual patterns, such as outliers, unexpectedly frequent or infrequ
 from known trends. Below is an initial visualization showing the distribution of businesses by owner race and industry, helping us spot 
 potential data inconsistencies or biases.
 
+We didn't change any variable names since they are pretty clear already.
+
+[cleaning script](/scripts/load_and_clean_data.R)
+
 ## Data Equity:
 
 The first principle, justice, means treating everyone in our data fairly. If we're analyzing factors like race, gender, or income, we need to make sure our data 
@@ -89,3 +91,9 @@ understand and participate fully in the process.
 Transparency is key, but our analysis might have limitations. While the data from the U.S. Census Bureau and NCSES is comprehensive and diverse, it only covers 2017-
 2021, potentially missing recent trends. Though the dataset aims to be representative, some subgroups may still be underrepresented. Acknowledging these limitations 
 ensures responsible use and accurate insights into business growth, diversity, and resource needs.
+
+## Data combining:
+
+Our group decided to combine our original data (employment trends) with US census data, which has the population of each race and sex for each year. There were no major issues getting the census data; however, it did take a bit of time to combine all the years we wanted to examine into one final dataset. When the data was finally combined, we created a facet-wrapped graph that was grouped by race and filtered by sex. The facet-wrap was done by race as well. Using this graph, we can see the population by race and sex per year. There is a clear majority for the "White" population when combining the data and other racial groups such as, "Asian", "Black", and "Some Other Race" trail behind. The split between genders (Male and Female) is somewhat even in all racial groups. 
+
+[combining script](/scripts/Combining_the_datasets.R)

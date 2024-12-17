@@ -32,7 +32,7 @@ potential data inconsistencies or biases.
 
 ## Modeling and Inference
 
-```{r}
+```{r, echo = FALSE, warning = FALSE, message = FALSE}
 library(tidyverse)
 library(ggplot2)
 library(gridExtra)
@@ -69,7 +69,7 @@ males, are more likely to achieve higher income levels.
 One of the issues in the analysis of employment data is the disparity between different racial groups, 
 reflecting structural inequality in the labor market. 
 
-```{r}
+```{r, echo = FALSE, warning = FALSE, message = FALSE}
 # Employment trends by race
 data2 %>%
   filter(!RACE_GROUP_LABEL %in% c("Total", "Unclassifiable", "Classifiable")) %>%
@@ -96,7 +96,7 @@ In 2018, almost all races had the largest increase in average employment, especi
 that the reason might be attributed to the strong economic growth in the U.S., which increased job availability. This likely benefited the largest demographic 
 group (“White”) more due to the pre-existing economic advantages.
 
-```{r}
+```{r, echo = FALSE, warning = FALSE, message = FALSE}
 data |>
   mutate(average_income = PAYANN / EMP * 1000) |>
   filter(VET_GROUP_LABEL == "Total",
@@ -128,7 +128,7 @@ more quickly than others, underscoring systemic disparities in resilience and re
 
 The type of jobs is also a key factor in affecting employment in the US. 
 
-```{r}
+```{r, echo = FALSE, warning = FALSE, message = FALSE}
 data |>
   filter(RACE_GROUP_LABEL == "Total",
          NAICS2017_LABEL != "Total for all sectors",
@@ -152,7 +152,7 @@ these areas for growth and development.
 Revenue could influence income by enabling higher wages and job growth. It can be analyzed at which stage revenue has the greatest impact and the reasons behind 
 this.
 
-```{r}
+```{r, echo = FALSE, warning = FALSE, message = FALSE}
 data2 <- readRDS(here::here("dataset/cleaned_data_N_revenue_combined.rds"))
 temp <- data2 |>
   filter(FIRMPDEMP > 0,
@@ -168,12 +168,8 @@ df <- temp |>
     VET_GROUP_LABEL == "Total",
     RACE_GROUP_LABEL != "Total"
   )
-temp |>
-  filter(
-    income == max(temp$income)
-  )
+
 m <- lm(income ~ revenue, df)
-summary(m)
 ggplot(df) +
   geom_point(aes(x = revenue, y = income)) +
   geom_smooth(aes(x = revenue, y = income), method = "lm", se = FALSE, color = "red") +
@@ -195,7 +191,7 @@ revenue grows.
 
 In society, there are certain gender barriers, and different types of employment may exhibit preferences or inequalities toward specific genders.
 
-```{r}
+```{r, echo = FALSE, warning = FALSE, message = FALSE}
 filtered_data <- data[data$SEX_LABEL != "Total" & data$NAICS2017_LABEL != "Total for all sectors", ]
 top_industries <- filtered_data |>
   count(NAICS2017_LABEL, sort = TRUE) |>
@@ -233,7 +229,7 @@ traditional roles associated with women.
 Inequality in employment resources between men and women may also imply inequality in average wages.
 
 
-```{r}
+```{r, echo = FALSE, warning = FALSE, message = FALSE}
 library(dplyr)
 library(ggplot2)
 
